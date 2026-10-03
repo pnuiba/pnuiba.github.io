@@ -1,0 +1,25 @@
+# main 브랜치에 push 하거나 PR을 올리면 사이트가 정상적으로 빌드되는지 확인합니다.
+# 실제 배포는 Cloudflare Pages의 Git 연동이 담당합니다.
+name: Build check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true # Ruby 버전은 .ruby-version 을 자동으로 읽습니다
+      - name: Build
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production

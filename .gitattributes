@@ -1,0 +1,7 @@
+# 줄바꿈을 LF로 통일 (Windows에서 작업해도 diff가 깨지지 않도록)
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.mp4 binary

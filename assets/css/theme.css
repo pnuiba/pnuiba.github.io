@@ -1,0 +1,517 @@
+/* =============================================================================
+ * PNU IBA 테마 — shadcn/ui 디자인 토큰 기반
+ * https://ui.shadcn.com/docs/theming
+ *
+ * 구성
+ *   1. 토큰      : shadcn 변수 (Neutral 베이스 + IBA 블루를 primary로)
+ *   2. 매핑      : al-folio 변수(--global-*) → shadcn 토큰
+ *   3. 기본      : 폰트(Pretendard), 제목, 링크
+ *   4. 컴포넌트  : Navbar, Dropdown, Card, Button, Badge, Accordion(details), Table, Footer
+ *
+ * 색을 바꾸려면 1번 토큰 값만 고치면 됩니다.
+ * shadcn 사이트의 다른 팔레트(Zinc, Stone 등)를 쓰려면 :root / 다크 블록을 통째로 바꾸고
+ * --primary 계열만 IBA 블루로 다시 맞추세요.
+ * 다크모드는 shadcn의 `.dark` 대신 al-folio 방식인 html[data-theme="dark"] 를 씁니다.
+ * ========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * 1. 토큰
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --radius: 0.625rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.489 0.27 266.13); /* IBA 블루 #1d3cf5 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.489 0.27 266.13 / 50%);
+
+  /* 차트 색 (ECharts JSON에는 같은 색을 hex로 적어 둠: #1d3cf5 #00bc7d #fe9a00 #ad46ff #ff2056) */
+  --chart-1: oklch(0.489 0.27 266.13);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+html[data-theme="dark"] {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.661 0.18 272.48); /* 어두운 배경용 밝은 IBA 블루 #6f86ff */
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.661 0.18 272.48 / 50%);
+}
+
+/* -----------------------------------------------------------------------------
+ * 2. al-folio 변수 → shadcn 토큰
+ *    (al-folio도 html[data-theme="dark"] 에서 값을 다시 정의하므로 두 선택자 모두 필요)
+ * -------------------------------------------------------------------------- */
+
+:root,
+html[data-theme="dark"] {
+  --global-bg-color: var(--background);
+  --global-text-color: var(--foreground);
+  --global-text-color-light: var(--muted-foreground);
+  --global-theme-color: var(--primary);
+  --global-hover-color: var(--primary);
+  --global-hover-text-color: var(--primary-foreground);
+  --global-divider-color: var(--border);
+  --global-card-bg-color: var(--card);
+  --global-code-bg-color: var(--muted);
+  --global-footer-bg-color: var(--background);
+  --global-footer-text-color: var(--muted-foreground);
+  --global-footer-link-color: var(--foreground);
+  --global-back-to-top-bg-color: var(--primary);
+  --global-back-to-top-text-color: var(--primary-foreground);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. 기본 타이포그래피
+ * -------------------------------------------------------------------------- */
+
+body {
+  font-family:
+    "Pretendard Variable",
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.post-header .post-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+article h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.post-description,
+.post-header .desc {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+}
+
+a:hover {
+  text-underline-offset: 4px;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+article code {
+  color: var(--foreground);
+  background-color: var(--muted);
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0.15rem 0.35rem;
+  font-size: 0.875em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* 홈 프로필 옆 정보: 기본 monospace → 본문 글꼴 */
+.profile .more-info {
+  font-family: inherit;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+/* 이미지 그림자: 무거운 Material 그림자 → shadcn shadow-sm + 테두리 */
+.z-depth-1 {
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.rounded {
+  border-radius: var(--radius) !important;
+}
+
+/* -----------------------------------------------------------------------------
+ * 4. 컴포넌트
+ * -------------------------------------------------------------------------- */
+
+/* --- 왼쪽 위 브랜드 (IBA / Intelligent Business Analytics) --- */
+.iba-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.navbar.navbar-light .iba-brand .iba-brand-name {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.navbar.navbar-light .iba-brand .iba-brand-sub {
+  color: var(--muted-foreground);
+  font-size: 0.68rem;
+  letter-spacing: 0.01em;
+}
+
+/* --- Navbar: 반투명 배경 + 블러 + 얇은 하단선 --- */
+.navbar {
+  opacity: 1;
+  background-color: color-mix(in oklch, var(--background) 85%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar.navbar-light .navbar-nav .nav-item .nav-link {
+  color: var(--muted-foreground);
+  font-size: 0.925rem;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover,
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+  color: var(--foreground);
+}
+
+.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+  font-weight: 600;
+}
+
+/* --- Dropdown Menu (shadcn Popover / DropdownMenu) --- */
+.navbar .dropdown-menu {
+  background-color: var(--popover);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  box-shadow: var(--shadow-md);
+  padding: 0.25rem;
+  min-width: 11rem;
+}
+
+.navbar .dropdown-menu .dropdown-item,
+.navbar .dropdown-menu a:not(.active) {
+  color: var(--popover-foreground);
+}
+
+.navbar .dropdown-menu .dropdown-item {
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.875rem;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover,
+.navbar .dropdown-menu .dropdown-item.active,
+.navbar .dropdown-menu .dropdown-item:active {
+  background: var(--accent);
+  color: var(--accent-foreground) !important;
+}
+
+.navbar .dropdown-menu .dropdown-item.active {
+  font-weight: 600;
+}
+
+/* --- Card --- */
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.card figure {
+  margin: 0;
+}
+
+/* 카드 사진은 4:3으로 잘라서 카드 높이를 맞춤 (원본 사진은 상세 페이지에서 전체가 보임) */
+.card .card-img-top {
+  border-radius: 0;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.card .card-body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+article .card h2.card-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.card .card-text {
+  margin-bottom: 0;
+}
+
+.card .card-text {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+.projects a:hover {
+  text-decoration: none;
+}
+
+.hoverable {
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.hoverable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in oklch, var(--primary) 35%, var(--border));
+}
+
+/* 교류 활동 카테고리 제목 */
+article .projects h2.category {
+  color: var(--foreground);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+article .projects a:has(h2.category):hover {
+  text-decoration: none;
+}
+
+/* --- Button --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.25rem;
+  padding: 0 1rem;
+  margin: 0 0.5rem 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  box-shadow: var(--shadow-xs);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in oklch, var(--primary) 90%, black);
+  color: var(--primary-foreground);
+}
+
+.btn-sm {
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.8rem;
+}
+
+/* --- Badge --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  margin: 0 0.35rem 0.35rem 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid transparent;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+a.badge:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  text-decoration: none;
+}
+
+.badge-outline {
+  background-color: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+/* --- Accordion: <details><summary>…</summary>…</details> --- */
+article details {
+  border-bottom: 1px solid var(--border);
+}
+
+article details > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+article details > summary::-webkit-details-marker {
+  display: none;
+}
+
+article details > summary::after {
+  content: "";
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.25rem;
+  border-right: 1.5px solid var(--muted-foreground);
+  border-bottom: 1.5px solid var(--muted-foreground);
+  transform: translateY(-25%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+article details[open] > summary::after {
+  transform: translateY(25%) rotate(-135deg);
+}
+
+article details > summary:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+article details > :not(summary) {
+  margin-top: 0 !important;
+  padding-bottom: 1rem;
+  color: var(--foreground);
+  font-size: 0.95rem;
+}
+
+/* --- Table (Markdown 표) — al-folio JS가 모든 표에 .table 을 붙이므로 홈 소식 목록(.table-borderless)만 제외 --- */
+article table:not(.table-borderless) {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 0.875rem;
+}
+
+article table:not(.table-borderless) th {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  padding: 0.625rem 0.75rem;
+  border-top: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+article table:not(.table-borderless) td {
+  font-size: 0.875rem;
+  padding: 0.75rem;
+  border-top: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+article table:not(.table-borderless) tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+article table:not(.table-borderless) tbody tr:hover {
+  background-color: color-mix(in oklch, var(--muted) 50%, transparent);
+}
+
+.table {
+  color: var(--foreground);
+}
+
+/* --- Footer --- */
+footer.fixed-bottom {
+  background-color: color-mix(in oklch, var(--background) 85%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+}
+
+/* --- 맨 위로 버튼 --- */
+#back-to-top {
+  border-radius: 9999px;
+  box-shadow: var(--shadow-md);
+}

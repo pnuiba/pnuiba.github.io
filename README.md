@@ -1,91 +1,205 @@
-# PNU IBA 홈페이지 코드 구조
+# PNU IBA 홈페이지
 
-프론트엔드 제작 전의 폴더 및 콘텐츠 정리 단계입니다.
-기존 페이지의 디자인과 본문을 유지하고, 기능별 파일 분류와 데이터 분리만 적용했습니다.
-화면 디자인, 메뉴 체계, 반응형 처리, 최종 URL은 추후 프론트엔드 작업에서 결정합니다.
+부산대학교 지능형 경영 데이터 분석 학회 IBA의 홈페이지입니다.
+[al-folio](https://github.com/alshedivat/al-folio) (Jekyll) 템플릿을 기반으로 하며, **Cloudflare Pages**로 무료 배포합니다.
 
-## 실행 및 확인
+> 내용 수정은 대부분 **Markdown(`.md`) 또는 YAML(`.yml`) 파일만 고치면 됩니다.**
+> 코드를 몰라도 GitHub 웹에서 파일을 열고 연필 아이콘(Edit)으로 고친 뒤 커밋하면, 몇 분 뒤 사이트에 반영됩니다.
+
+---
+
+## 무엇을 고치려면 어디를 열면 되나요?
+
+| 하고 싶은 일                     | 고칠 파일                                    | 방법                                                                 |
+| -------------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
+| 공지·소식 올리기                 | `_news/` 폴더                                | 기존 파일을 복사해 날짜·내용만 바꾸기 ([예시](#공지소식-추가))       |
+| 수상 내역 추가                   | `_data/awards.yml`                           | 해당 연도 `items`에 한 줄 추가 → 목록·차트 자동 반영                 |
+| 부원 명단 추가                   | `_data/members.yml`                          | 파일 안 예시대로 추가 → 기수별로 자동 정렬                           |
+| 교류 활동(행사 사진) 추가        | `_projects/` 폴더 + `assets/img/activities/` | 사진 올리고 기존 파일 복사 ([예시](#교류-활동-추가))                 |
+| 커리큘럼 수정                    | `_data/curriculum.yml`                       | `title`, `items` 수정                                                |
+| FAQ 수정                         | `_data/faq.yml`                              | `q`(질문), `a`(답변) 추가                                            |
+| 연락처(메일·인스타·전화) 수정    | `_data/contact.yml`, `_data/socials.yml`     | 값만 바꾸기                                                          |
+| 모집 안내·일정 수정              | `_pages/recruit.md`                          | 본문 Markdown 수정                                                   |
+| 모집 포스터 교체                 | `assets/img/recruit/` + `_pages/recruit.md`  | 새 폴더에 포스터 올리고 맨 위 `posters:` 목록 경로 바꾸기            |
+| 학회 소개·교수님·조직도          | `_pages/introduction.md`, `assets/img/intro/` | 본문 수정 / 조직도 이미지는 같은 이름으로 덮어쓰기                  |
+| 홈 화면 문구                     | `_pages/about.md`                            | 본문 수정                                                            |
+| 상단 메뉴 구성                   | `_pages/menu-*.md`                           | `children` 목록 수정 (자세히는 [메뉴](#상단-메뉴))                   |
+| 사이트 이름·설명·주소·하단 문구  | `_config.yml`                                | 맨 위 "사이트 기본 정보" 부분                                        |
+| 왼쪽 위 로고 문구(IBA / 작은 글씨) | `_config.yml`의 `title`, `brand_subtitle`  | 색·크기는 `_includes/header.liquid` 맨 위 `<style>`                  |
+
+### 공지·소식 추가
+
+`_news/` 폴더에 `YYYY-MM-DD-영문이름.md` 파일을 만듭니다. 홈 화면 "최근 소식"과 상단 메뉴 "News"에 자동으로 표시됩니다.
+
+```markdown
+---
+layout: post
+date: 2027-01-05
+inline: true
+---
+
+:mega: **2027 IBA 13기 신입기수 모집** (01.05 ~ 01.19) — [모집 안내 보기]({{ '/recruit/' | relative_url }})
+```
+
+- `inline: true`면 목록에 한 줄로만 표시됩니다.
+- 긴 글로 쓰고 싶으면 `inline: true`를 지우고 `title: 제목`을 추가한 뒤 본문을 쓰면, 클릭해서 읽는 글이 됩니다.
+
+### 교류 활동 추가
+
+1. 사진을 `assets/img/activities/`에 올립니다. 파일 이름은 영문·숫자·`-`만 쓰는 걸 권장합니다(예: `2026-spring-mt.jpg`). 가로 1000px 정도, 500KB 이하면 충분합니다.
+2. `_projects/` 폴더의 기존 파일 하나를 복사해 새 이름으로 저장하고 앞부분을 고칩니다.
+
+```markdown
+---
+title: "2026 봄 MT"
+description: "한 줄 소개"
+category: 행사 # 행사 / 특강 / 소모임 중 하나
+importance: 1 # 숫자가 작을수록 앞에 표시
+img: assets/img/activities/2026-spring-mt.jpg
+---
+
+{% include figure.liquid path="assets/img/activities/2026-spring-mt.jpg" class="img-fluid rounded z-depth-1" alt="2026 봄 MT" zoomable=true %}
+```
+
+새 카테고리를 만들려면 `_pages/activities.md`의 `display_categories` 목록에도 추가해야 합니다.
+
+### 상단 메뉴
+
+- 메뉴는 `_pages/menu-about.md`(About), `menu-activities.md`(Activities), `menu-join.md`(Join Us), `news.md`(News)로 구성됩니다. 메뉴와 페이지 제목은 영어, 본문은 한국어로 씁니다.
+- 순서는 `nav_order` 숫자로 정합니다.
+- 드롭다운 안의 `children` → `title`은 **해당 페이지 파일의 `title`과 글자까지 똑같아야** 메뉴에서 현재 페이지가 강조됩니다.
+- 새 페이지를 만들 때는 `_pages/`에 md 파일을 만들고 `permalink: /주소/`를 정한 뒤, 원하는 메뉴의 `children`에 추가하세요.
+
+### 이미지에 관해
+
+- 로고·다이어그램 원본은 **투명 배경 + 흰 글씨**라서, 사이트에는 어두운 배경을 입힌 버전(`assets/img/logo/logo-dark.png`, `assets/img/intro/*.png`)을 씁니다. 새 로고 이미지를 넣을 때도 밝은 테마에서 보이는지 확인하세요.
+- 이미지에 **개인 전화번호 등 개인정보가 들어가지 않도록** 주의하세요.
+
+---
+
+## 인터랙티브 요소
+
+이미 들어 있는 기능 (al-folio 기본 제공):
+
+| 기능                           | 어디에 쓰였나                          | 켜는 법                                                                             |
+| ------------------------------ | -------------------------------------- | ----------------------------------------------------------------------------------- |
+| 다크 모드 전환                 | 상단 오른쪽 버튼                       | `_config.yml`의 `enable_darkmode`                                                   |
+| 사이트 검색 (Ctrl+K / ⌘K)      | 상단 검색 아이콘                       | `_config.yml`의 `search_enabled`                                                    |
+| 이미지 클릭 확대               | 교수님 사진, 조직도, 활동 사진         | `figure.liquid`에 `zoomable=true`                                                   |
+| 사진 갤러리 (좌우 넘기기)      | 모집 포스터                            | 페이지 맨 위에 `images: { lightbox2: true }`, 링크에 `data-lightbox="그룹이름"`     |
+| 차트 (ECharts)                 | 수상 건수 막대, 학과 분포 도넛         | 페이지 맨 위에 `chart: { echarts: true }`, 본문에 ` ```echarts ` 코드 블록          |
+| 접기/펼치기                    | 수상 내역, 커리큘럼, FAQ               | HTML `<details><summary>제목</summary>내용</details>`                               |
+| 카드 + 카테고리                | 교류 활동                              | `_projects/` 파일의 `category`                                                      |
+| 스크롤 진행 바, 맨 위로 버튼   | 모든 페이지                            | `_config.yml`의 `enable_progressbar`, `back_to_top`                                 |
+
+새로운 기능을 직접 만들어 넣고 싶을 때:
+
+- **특정 페이지에만** 넣는 경우 (권장)
+  - 그 페이지 md 파일 본문에 `<script>`를 바로 쓰거나, `assets/js/`에 JS 파일을 만들고 `<script src="{{ '/assets/js/파일.js' | relative_url }}"></script>`로 불러옵니다.
+  - CSS는 페이지 맨 위 설정에 `_styles: |` 항목으로 쓸 수 있습니다(layout이 `page`인 페이지).
+- **사이트 전체에** 넣어야 하는 경우
+  - al-folio에는 사이트 전체용 연결 지점이 없어서, 테마 파일(예: `_includes/scripts.liquid`)을 복사해 덮어써야 합니다.
+  - 덮어쓴 파일은 테마 업데이트 때 직접 관리해야 하니, 덮어쓴 뒤 `bundle exec al-folio upgrade overrides audit`을 실행하고 생기는 `.al-folio-overrides.yml`도 함께 커밋하세요.
+
+---
+
+## 디자인 (테마)
+
+사이트의 색·글꼴·버튼·카드 모양은 [shadcn/ui 테마](https://ui.shadcn.com/docs/theming) 방식을 따르며, **`assets/css/theme.css` 한 파일**에 모여 있습니다.
+
+- **색 바꾸기**: 파일 맨 위 "1. 토큰"의 값만 고치면 사이트 전체에 반영됩니다. 주 색(`--primary`)은 IBA 블루(`#1d3cf5`)이고, 다크모드 값은 `html[data-theme="dark"]` 블록에 있습니다.
+- **다른 팔레트 쓰기**: shadcn 사이트에서 원하는 Base Color(Zinc, Stone 등)의 `:root` / `.dark` 값을 복사해 같은 이름의 변수에 붙여 넣고, `--primary`만 IBA 블루로 다시 맞추세요.
+- **모서리 둥글기**: `--radius` (기본 `0.625rem`)
+- **글꼴**: Pretendard (CDN). `_includes/header.liquid` 맨 위에서 불러옵니다.
+- **차트 색**: ECharts는 CSS 변수를 읽지 못해서, 페이지의 차트 코드에 같은 색을 hex로 적어 두었습니다(`"color": [...]`). 토큰을 바꾸면 차트 색도 함께 바꿔 주세요.
+
+본문에서 쓸 수 있는 컴포넌트:
+
+| 모양              | 쓰는 법                                                                 |
+| ----------------- | ----------------------------------------------------------------------- |
+| 버튼 (기본/강조)  | `<a class="btn" href="…">` / `<a class="btn btn-primary" href="…">`     |
+| 배지              | `<a class="badge" href="…">#태그</a>` (테두리형: `badge badge-outline`) |
+| 아코디언          | `<details><summary><span>제목</span></summary>내용</details>`           |
+| 표                | 일반 Markdown 표를 쓰면 자동으로 적용                                   |
+
+---
+
+## 로컬에서 미리 보기
+
+수정 결과를 내 컴퓨터에서 먼저 확인하고 싶을 때만 필요합니다. (GitHub 웹에서만 고친다면 건너뛰어도 됩니다.)
+
+**준비 (최초 1회)**
+
+- macOS: `brew install ruby@3.3` 후 `export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"` (터미널 설정 파일에 추가 권장)
+- Windows: [RubyInstaller](https://rubyinstaller.org/)에서 Ruby 3.3 (WITH DEVKIT) 설치
 
 ```sh
-npm ci
-npm run dev
-npm run lint
-npm run build
+bundle config set --local path vendor/bundle   # gem을 이 폴더 안에만 설치
+bundle install
 ```
 
-## 폴더 역할
+**실행**
+
+```sh
+bundle exec jekyll serve --force_polling --livereload   # http://localhost:4000 (저장하면 자동 새로고침)
+bundle exec jekyll build      # 배포용 빌드만 해보기 (_site 폴더 생성)
+```
+
+`_config.yml`을 고쳤을 때는 서버를 껐다(Ctrl+C) 다시 켜야 반영됩니다.
+
+---
+
+## 배포 (Cloudflare Pages)
+
+`main` 브랜치에 push 되면 Cloudflare Pages가 자동으로 빌드·배포합니다.
+
+**최초 설정 (관리자 1회)**: Cloudflare 대시보드 → **Workers & Pages → Create → Pages → Connect to Git** → 이 저장소 선택
+
+| 설정                   | 값                                     |
+| ---------------------- | -------------------------------------- |
+| Production branch      | `main`                                 |
+| Framework preset       | `Jekyll`                               |
+| Build command          | `bundle exec jekyll build`             |
+| Build output directory | `_site`                                |
+| Environment variables  | `JEKYLL_ENV` = `production`            |
+
+- Ruby 버전은 저장소의 `.ruby-version`(3.3.5)을 자동으로 사용합니다.
+- 배포 주소가 정해지면(예: `https://pnuiba.pages.dev` 또는 연결한 도메인) `_config.yml`의 `url`을 그 주소로 맞춰 주세요. 링크 미리보기·사이트맵에 쓰입니다.
+- PR을 올리면 GitHub Actions(`.github/workflows/build.yml`)가 빌드가 깨지지 않는지 먼저 확인합니다. Cloudflare는 PR마다 미리보기 주소도 만들어 줍니다.
+
+---
+
+## 폴더 구조
 
 ```text
-src/
-  pages/
-    home/          기존 홈
-    about/         학회 소개, 수상 내역
-    members/       공개 부원 목록
-    activities/    교육, 교류 행사
-    join/          모집, FAQ, 연락처
-  components/
-    layout/        기존 Navbar
-    ui/            기존 FadeIn
-  data/            화면과 분리한 콘텐츠
-  styles/          기존 전역 스타일
-  assets/          기존 로고와 소개 이미지
-  App.jsx          기존 공개 페이지 경로
-  main.jsx         앱 시작점
-public/
-  images/          기존 행사 사진, 모집 포스터
+_config.yml         사이트 전체 설정
+_pages/             각 페이지 (홈, 소개, 수상, 커리큘럼, 활동, 모집, FAQ, 문의, 메뉴)
+_data/              목록형 데이터 (수상, 부원, 커리큘럼, FAQ, 연락처, SNS)
+_news/              공지·소식
+_projects/          교류 활동 카드 (행사 하나 = 파일 하나)
+assets/img/         이미지 (logo, intro, activities, recruit)
+Gemfile             사용하는 플러그인 목록 (_config.yml 의 plugins 와 함께 관리)
 ```
 
-## 콘텐츠 위치
+화면 디자인(레이아웃, 스타일)은 저장소에 없고 `al_folio_core` 등 gem 안에 있습니다. 그래서 위 폴더만 관리하면 됩니다.
 
-| 내용 | 파일 |
-| --- | --- |
-| 수상 내역 | `src/data/awards.js` |
-| 부원 명단 | `src/data/members.json` |
-| 교육 내용 | `src/data/curriculum.js` |
-| 교류 행사 사진 목록 | `src/data/activities.js` |
-| FAQ | `src/data/faq.js` |
-| 모집 포스터 목록 | `src/data/application.js` |
-| 소개 본문 | `src/pages/about/Introduction.jsx` |
-| 모집 본문 | `src/pages/join/Application.jsx` |
-| 연락처 | `src/pages/join/Contact.jsx` |
+예외로 **`_includes/header.liquid` 하나만** 테마 파일을 덮어썼습니다(왼쪽 위 IBA 로고 문구). 바꾼 곳은 파일 맨 위 브랜드 부분뿐이고, `.al-folio-overrides.yml`에 기록되어 있습니다. 테마 버전을 올린 뒤에는 `bundle exec al-folio upgrade overrides audit`으로 원본과 달라진 점이 있는지 확인하세요.
 
-부원 데이터는 `id`, `name`, `generation`, `department`, `note` 필드를 사용합니다.
-원본에는 실제 명단이 포함되어 있지 않아 `members.json`은 빈 배열로 두었습니다.
-원본 Supabase의 회원·게시글은 별도로 가져오지 않았습니다.
+### 주의할 점
 
-로그인·회원가입·관리자·게시판 및 DB 의존성은 제외했습니다.
-문의 화면은 기존 연락처와 링크를 유지하고 DB 입력폼을 제외했습니다.
-기존 메뉴의 로그인·계정·게시판 링크만 제거했습니다.
-로그인·관리자·DB 코드가 있는 원본은 로컬의 상위 `source/pnu-iba-homepage`에 보관하며 이 저장소에는 포함하지 않습니다.
+- **플러그인 추가/삭제는 `Gemfile`과 `_config.yml`의 `plugins:` 두 곳을 같이** 고쳐야 합니다. 한쪽만 고치면 에러 없이 기능이 꺼집니다.
+- `jekyll-scholar`(논문 기능)는 쓰지 않지만 테마 레이아웃이 필요로 하므로 지우면 빌드가 실패합니다.
+- 기능이 안 보이면 ① gem 설치 ② `_config.yml` 설정 ③ 페이지 맨 위 설정(예: `chart: echarts: true`) 세 가지가 모두 켜져 있는지 확인하세요.
 
-## 협업
+## 협업 방식
 
-콘텐츠 수정은 `src/data`, 화면 제작은 `src/pages`와 `src/components`에서 진행합니다.
-기능별 브랜치에서 작업하고 PR로 검토합니다.
+1. `main`에서 새 브랜치를 만들어 작업합니다 (예: `content/2027-awards`).
+2. PR을 올리고, GitHub Actions 빌드 확인이 통과하는지와 Cloudflare 미리보기 주소에서 화면을 확인합니다.
+3. 검토 후 `main`에 merge하면 자동 배포됩니다.
 
-## Cloudflare Pages 배포
+간단한 글자 수정은 GitHub 웹에서 바로 고쳐도 됩니다.
 
-Cloudflare에서 **Workers & Pages → Create application → Pages → Git 저장소 연결**로
-`pnu-iba/homepage`를 선택합니다. 비공개 조직 저장소 접근을 위해 조직 관리자의 GitHub 앱 승인이 필요할 수 있습니다.
+## 라이선스
 
-| 설정 | 값 |
-| --- | --- |
-| Production branch | `main` |
-| Framework preset | `Vite` (또는 React/Vite) |
-| Root directory | 저장소 루트 (비워두기) |
-| Build command | `npm run build` |
-| Build output directory | `dist` |
-| Node.js | `.node-version`의 `22.16.0` |
-
-Cloudflare가 의존성을 설치하고 빌드합니다. 환경변수나 DB 연결은 필요하지 않습니다.
-생성 후 `main`에 push하면 자동 배포됩니다. 이 문서 자체가 Cloudflare 프로젝트를 생성하는 것은 아닙니다.
-
-React Router 하위 URL 직접 접속은 Cloudflare Pages 기본 SPA 동작을 사용합니다.
-이를 유지하려면 `public/404.html`을 추가하지 않습니다. Vercel 전용 설정은 제거했습니다.
-
-- [Vite 배포 안내](https://developers.cloudflare.com/pages/framework-guides/deploy-a-vite3-project/)
-- [SPA 경로 처리](https://developers.cloudflare.com/pages/configuration/serving-pages/)
-- [Node 버전 설정](https://developers.cloudflare.com/pages/configuration/build-image/)
-
-GitHub Actions에서 push 및 PR마다 의존성 설치·코드 검사·빌드를 확인합니다.
-실제 Cloudflare 배포는 Cloudflare의 Git 연동이 담당합니다.
+이 사이트는 MIT 라이선스의 [al-folio](https://github.com/alshedivat/al-folio)를 기반으로 합니다 (`LICENSE` 참고).
+사진과 학회 콘텐츠의 저작권은 PNU IBA에 있습니다.
