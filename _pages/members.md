@@ -3,6 +3,8 @@ layout: page
 title: Members
 permalink: /members/
 description: 역대 IBA 부원들을 소개합니다.
+nav: true
+nav_order: 2
 ---
 
 {% comment %}

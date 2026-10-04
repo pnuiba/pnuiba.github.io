@@ -1,15 +1,24 @@
-# main 브랜치에 push 하거나 PR을 올리면 사이트가 정상적으로 빌드되는지 확인합니다.
-# 실제 배포는 Cloudflare Pages의 Git 연동이 담당합니다.
-name: Build check
+# PR을 올리면 사이트가 정상적으로 빌드되는지만 확인하고,
+# main 브랜치에 push(머지)되면 빌드 결과를 GitHub Pages에 배포합니다.
+# 저장소 Settings → Pages → Source 를 "GitHub Actions"로 설정해야 배포됩니다.
+name: Build and deploy
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch: # Actions 탭에서 수동 실행
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
+
+# 배포가 겹치면 먼저 시작한 배포는 끝까지 진행하고, 대기 중인 것만 최신으로 교체
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -23,3 +32,20 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
+      - name: Upload site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -6,4 +6,6 @@ importance: 1
 img: assets/img/activities/badminton.jpg
 ---
 
+[← Activities]({{ '/activities/' | relative_url }})
+
 {% include figure.liquid loading="eager" path="assets/img/activities/badminton.jpg" class="img-fluid rounded z-depth-1" alt="배드민턴 소모임" zoomable=true %}

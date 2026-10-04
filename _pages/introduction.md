@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Introduction
-permalink: /introduction/
+title: About
+permalink: /about/
 description: IBA를 소개합니다.
+nav: true
+nav_order: 1
 chart:
   echarts: true # 학과 분포 차트
 ---

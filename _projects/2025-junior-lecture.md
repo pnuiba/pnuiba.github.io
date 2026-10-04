@@ -6,4 +6,6 @@ importance: 1
 img: assets/img/activities/2025-junior-lecture.jpg
 ---
 
+[← Activities]({{ '/activities/' | relative_url }})
+
 {% include figure.liquid loading="eager" path="assets/img/activities/2025-junior-lecture.jpg" class="img-fluid rounded z-depth-1" alt="2025 주니어선배 특강" zoomable=true %}

@@ -2,11 +2,17 @@
  * PNU IBA 테마 — shadcn/ui 디자인 토큰 기반
  * https://ui.shadcn.com/docs/theming
  *
+ * 색상·글꼴·카드·홈 화면 배치는 부산대 BAE LAB 홈페이지(pnubaelab.github.io, MIT)의
+ * 디자인을 참고했습니다: 따뜻한 회색 배경, 하늘색 포인트, 에이투지체.
+ *
  * 구성
  *   1. 토큰      : shadcn 변수 (Neutral 베이스 + IBA 블루를 primary로)
  *   2. 매핑      : al-folio 변수(--global-*) → shadcn 토큰
- *   3. 기본      : 폰트(Pretendard), 제목, 링크
+ *   3. 기본      : 폰트(에이투지체, Pretendard 대체), 제목, 링크
  *   4. 컴포넌트  : Navbar, Dropdown, Card, Button, Badge, Accordion(details), Table, Footer
+ *   5. 홈 화면   : 소개 + NEWS! 목록
+ *   6. Awards    : 연도별 세로 타임라인
+ *   7. Join Us   : 접기/펼치기 항목
  *
  * 색을 바꾸려면 1번 토큰 값만 고치면 됩니다.
  * shadcn 사이트의 다른 팔레트(Zinc, Stone 등)를 쓰려면 :root / 다크 블록을 통째로 바꾸고
@@ -19,26 +25,29 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.489 0.27 266.13); /* IBA 블루 #1d3cf5 */
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.489 0.27 266.13 / 50%);
+  --background: #f4f3f2; /* 따뜻한 회색 배경 */
+  --foreground: #202123;
+  --card: #ffffff;
+  --card-foreground: #202123;
+  --popover: #ffffff;
+  --popover-foreground: #202123;
+  --primary: #5dadec; /* 하늘색 포인트 */
+  --primary-foreground: #ffffff;
+  --secondary: #e9e7e5;
+  --secondary-foreground: #202123;
+  --muted: #ebe9e7;
+  --muted-foreground: #6c757d;
+  --accent: #e9e7e5;
+  --accent-foreground: #202123;
+  --destructive: #c00;
+  --border: #e9ecef;
+  --input: #dee2e6;
+  --ring: rgb(93 173 236 / 50%);
+
+  --footer: #1c1c1d; /* 하단 바: 라이트 모드에서 어두운 띠 */
+  --footer-foreground: #e8e8e8;
 
   /* 차트 색 (ECharts JSON에는 같은 색을 hex로 적어 둠: #1d3cf5 #00bc7d #fe9a00 #ad46ff #ff2056) */
   --chart-1: oklch(0.489 0.27 266.13);
@@ -48,29 +57,32 @@
   --chart-5: oklch(0.645 0.246 16.439);
 
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-sm: 0 4px 12px rgb(0 0 0 / 0.05);
+  --shadow-md: 0 8px 25px rgb(0 0 0 / 0.1);
 }
 
 html[data-theme="dark"] {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.661 0.18 272.48); /* 어두운 배경용 밝은 IBA 블루 #6f86ff */
-  --primary-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.661 0.18 272.48 / 50%);
+  --background: #1c1c1d;
+  --foreground: #e8e8e8;
+  --card: #212529;
+  --card-foreground: #e8e8e8;
+  --popover: #212529;
+  --popover-foreground: #e8e8e8;
+  --primary: #5dadec;
+  --primary-foreground: #1c1c1d;
+  --secondary: #2b2f33;
+  --secondary-foreground: #e8e8e8;
+  --muted: #2b2f33;
+  --muted-foreground: #adb5bd;
+  --accent: #2b2f33;
+  --accent-foreground: #e8e8e8;
+  --destructive: #ff6b6b;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 15%);
+  --ring: rgb(93 173 236 / 50%);
+
+  --footer: #e8e8e8; /* 다크 모드에서는 하단 바를 밝게 반전 */
+  --footer-foreground: #1c1c1d;
 }
 
 /* -----------------------------------------------------------------------------
@@ -89,9 +101,9 @@ html[data-theme="dark"] {
   --global-divider-color: var(--border);
   --global-card-bg-color: var(--card);
   --global-code-bg-color: var(--muted);
-  --global-footer-bg-color: var(--background);
-  --global-footer-text-color: var(--muted-foreground);
-  --global-footer-link-color: var(--foreground);
+  --global-footer-bg-color: var(--footer);
+  --global-footer-text-color: var(--footer-foreground);
+  --global-footer-link-color: var(--footer-foreground);
   --global-back-to-top-bg-color: var(--primary);
   --global-back-to-top-text-color: var(--primary-foreground);
 }
@@ -100,8 +112,34 @@ html[data-theme="dark"] {
  * 3. 기본 타이포그래피
  * -------------------------------------------------------------------------- */
 
+/* 에이투지체 (본문·제목) — 눈누 무료 폰트 */
+@font-face {
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-8ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
+/* 기본 글자 크기 15px (rem 단위 전체가 함께 작아짐) */
+html {
+  font-size: 15px;
+}
+
 body {
   font-family:
+    "A2z",
     "Pretendard Variable",
     Pretendard,
     -apple-system,
@@ -111,7 +149,7 @@ body {
     "Noto Sans KR",
     "Malgun Gothic",
     sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   word-break: keep-all;
@@ -123,17 +161,17 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .post-header .post-title {
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 1.85rem;
+  font-weight: 800;
 }
 
 article h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -148,9 +186,11 @@ a:hover {
   text-underline-offset: 4px;
 }
 
+/* 굵은 글씨는 포인트 색으로 */
 strong,
 b {
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--primary);
 }
 
 article code {
@@ -187,51 +227,56 @@ article code {
  * 4. 컴포넌트
  * -------------------------------------------------------------------------- */
 
-/* --- 왼쪽 위 브랜드 (IBA / Intelligent Business Analytics) --- */
+/* --- 왼쪽 위 브랜드: 진한 "IBA" + 작은 부제 --- */
 .iba-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.iba-brand .iba-brand-text {
   display: flex;
   flex-direction: column;
   line-height: 1.05;
-  padding-top: 0.35rem;
-  padding-bottom: 0.35rem;
 }
 
 .navbar.navbar-light .iba-brand .iba-brand-name {
-  color: var(--primary);
+  color: var(--foreground);
   font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: 0.02em;
+  font-size: 1.45rem;
+  letter-spacing: 0.01em;
 }
 
 .navbar.navbar-light .iba-brand .iba-brand-sub {
   color: var(--muted-foreground);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
+  font-weight: 300;
   letter-spacing: 0.01em;
 }
 
-/* --- Navbar: 반투명 배경 + 블러 + 얇은 하단선 --- */
+/* --- Navbar: 페이지 배경색 + 얇은 하단선, 활성 메뉴는 포인트 색 --- */
 .navbar {
-  opacity: 1;
-  background-color: color-mix(in oklch, var(--background) 85%, transparent);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  opacity: 0.95;
+  background-color: var(--background);
   border-bottom: 1px solid var(--border);
 }
 
 .navbar.navbar-light .navbar-nav .nav-item .nav-link {
-  color: var(--muted-foreground);
-  font-size: 0.925rem;
-  font-weight: 500;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 300;
   transition: color 0.15s ease;
 }
 
-.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover,
-.navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  color: var(--foreground);
+.navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
+  color: var(--primary);
 }
 
 .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  font-weight: 600;
+  color: var(--primary);
+  font-weight: 300;
 }
 
 /* --- Dropdown Menu (shadcn Popover / DropdownMenu) --- */
@@ -271,7 +316,7 @@ article code {
   background-color: var(--card);
   color: var(--card-foreground);
   border: 1px solid var(--border);
-  border-radius: calc(var(--radius) + 4px);
+  border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
@@ -312,16 +357,12 @@ article .card h2.card-title {
 }
 
 .hoverable {
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .hoverable:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-md);
-  border-color: color-mix(in oklch, var(--primary) 35%, var(--border));
 }
 
 /* 교류 활동 카테고리 제목 */
@@ -504,14 +545,445 @@ article table:not(.table-borderless) tbody tr:hover {
 
 /* --- Footer --- */
 footer.fixed-bottom {
-  background-color: color-mix(in oklch, var(--background) 85%, transparent);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid var(--border);
+  background-color: var(--footer);
+  font-size: 0.75rem;
+}
+
+footer.fixed-bottom .container {
+  color: var(--footer-foreground);
+}
+
+footer.fixed-bottom a {
+  color: var(--footer-foreground);
+}
+
+footer.fixed-bottom a:hover {
+  color: var(--primary);
+  text-decoration: none;
 }
 
 /* --- 맨 위로 버튼 --- */
 #back-to-top {
   border-radius: 9999px;
   box-shadow: var(--shadow-md);
+}
+
+/* -----------------------------------------------------------------------------
+ * 5. 홈 화면 (_pages/about.md) — 소개 + NEWS! 목록
+ * -------------------------------------------------------------------------- */
+
+.home-intro p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+article h2.home-news-title {
+  margin: 3rem 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+article h2.home-news-title a {
+  color: var(--primary);
+}
+
+article h2.home-news-title a:hover {
+  text-decoration: none;
+}
+
+/* 날짜 | 내용 2열 목록. 행 사이에 얇은 구분선 */
+.home-news tr + tr th,
+.home-news tr + tr td {
+  border-top: 1px solid var(--border);
+}
+
+.home-news th {
+  width: 7.5rem;
+  padding: 0.7rem 0.5rem 0.7rem 0;
+  font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+}
+
+.home-news td {
+  padding: 0.7rem 0;
+}
+
+@media (max-width: 576px) {
+  .home-news th {
+    width: 6rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* -----------------------------------------------------------------------------
+ * 6. Awards (_pages/awards.md) — 학기 탭 + 목록
+ *    한 줄 = [날짜(Sep 05) — 연도는 위 탭에서 선택] [사진 칸] [등급 라벨·대회명·수상자·Summary]
+ *    사진·Summary 가 없어도 칸은 유지, 항목 사이는 얇은 가로선으로 구분
+ * -------------------------------------------------------------------------- */
+
+/* 이 페이지만 본문 폭을 넓게. 상단 메뉴·하단 바 폭은 그대로 */
+body:has(.awards-list) .container[role="main"] {
+  max-width: 1140px;
+}
+
+/* 학기 탭 */
+.awards-tabs {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  scrollbar-width: none;
+}
+
+.awards-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.awards-tab {
+  flex: none;
+  padding: 0.6rem 0 0.7rem;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  color: var(--muted-foreground) !important;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.awards-tab:hover {
+  color: var(--foreground) !important;
+  text-decoration: none;
+}
+
+.awards-tab.is-active {
+  border-bottom-color: var(--foreground);
+  color: var(--foreground) !important;
+  font-weight: 700;
+}
+
+.awards-term {
+  scroll-margin-top: 80px;
+}
+
+article h2.awards-term-title {
+  margin: 1.75rem 0 0.25rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 목록 */
+.awards-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.award {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.award:first-child {
+  border-top: 0;
+}
+
+/* 날짜 칸 (Sep 05) */
+.award-when {
+  padding-top: 0.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.award-when time {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--foreground);
+  white-space: nowrap;
+}
+
+/* 사진 칸 */
+.award-media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--muted);
+}
+
+.award-media {
+  position: relative;
+}
+
+.award-media a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.award-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 사진이 여러 장이면 오른쪽 아래에 남은 장수 표시 (+2) */
+.award-media-count {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.6);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.award-media--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: color-mix(in oklch, var(--muted-foreground) 40%, transparent);
+  font-size: 1.3rem;
+}
+
+/* 설명 칸 */
+.award-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* 제목·수상자 아래 남은 공간에서 Summary 를 세로 가운데로 */
+.award-summary-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.award-when {
+  align-self: start;
+}
+
+.award-media {
+  align-self: start;
+}
+
+/* 등급별 수상자: [대상] 8기 OOO · 9기 OOO */
+.award-teams {
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0;
+}
+
+.award-teams li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.award-teams li + li {
+  margin-top: 0.25rem;
+}
+
+.award-teams .award-members {
+  margin: 0;
+}
+
+.award-teams .award-grade {
+  flex: none;
+  min-width: 3.5rem;
+  text-align: center;
+}
+
+.award-grades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0 0 0.5rem;
+}
+
+.award-grade {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  background: var(--card);
+}
+
+.award-grade--top {
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* 우수상·2등: 같은 계열의 옅은 색 */
+.award-grade--mid {
+  border-color: color-mix(in oklch, var(--primary) 45%, var(--border));
+  color: color-mix(in oklch, var(--primary) 75%, var(--foreground));
+  font-weight: 600;
+}
+
+article .award-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.award-members {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.award-members span + span::before {
+  content: "·";
+  margin: 0 0.4rem;
+}
+
+/* Summary: 배경 없이 왼쪽 세로선만 있는 인용문 형태 */
+.award-summary {
+  min-height: 3.5rem;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 2px solid var(--border);
+}
+
+.award-summary-label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.award-summary p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.award-slides {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .award {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+}
+
+/* -----------------------------------------------------------------------------
+ * 7. Join Us (_pages/recruit.md) — 탭(지원 안내 / FAQ, 모양은 Awards 탭과 공유) + 접기/펼치기. 펼친 내용은 흐린 글씨
+ * -------------------------------------------------------------------------- */
+
+.join-tabs {
+  margin-bottom: 1rem;
+}
+
+.join-panel {
+  scroll-margin-top: 80px;
+}
+
+body:has(.join-tabs) article details > p,
+body:has(.join-tabs) article details > ul {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+
+body:has(.join-tabs) article details > table {
+  margin: 0;
+}
+
+/* Join Us > 지원 안내: 항상 보이는 요약 상자 */
+.join-summary {
+  margin: 0.5rem 0 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.join-summary-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.join-summary-title span {
+  margin-left: 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.join-summary-actions {
+  margin: 0;
+}
+
+.join-summary-actions .btn {
+  margin-bottom: 0;
+}
+
+/* 전형 절차: 날짜 | 단계 | 설명 */
+body:has(.join-tabs) article details > ol.join-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.join-steps li {
+  display: grid;
+  grid-template-columns: 7.5rem 5.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+}
+
+.join-steps li + li {
+  border-top: 1px dashed var(--border);
+}
+
+.join-step-date {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.join-step-name {
+  font-weight: 600;
+}
+
+.join-step-note {
+  color: var(--muted-foreground);
+}
+
+body:has(.join-tabs) article details > p.join-steps-foot {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 576px) {
+  .join-steps li {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
 }

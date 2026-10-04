@@ -1,4 +1,4 @@
-# 교육 세션 커리큘럼 (/curriculum/ 페이지)
+# 교육 세션 커리큘럼 (홈 화면의 Curriculum 섹션)
 # 주차를 추가/수정할 때는 title 과 items 만 고치면 됩니다.
 - title: "Data Analysis Introduction / Colab / Python"
   items:

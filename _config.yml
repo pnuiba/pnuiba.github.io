@@ -8,20 +8,20 @@
 # -----------------------------------------------------------------------------
 
 title: IBA
+last_name: IBA # 하단 저작권 문구(© Copyright 연도 IBA.)와 페이지 작성자 정보에 쓰임
 brand_subtitle: Intelligent Business Analytics # 왼쪽 위 IBA 아래 작은 글씨
 contact_note: >
   프로젝트 제안 및 문의는 메일 또는 인스타그램 DM으로 연락 주세요.
 description: >
   부산대학교 지능형 경영 데이터 분석 학회 IBA(Intelligent Business Analytics)
 footer_text: >
-  부산대학교 지능형 경영 데이터 분석 학회 IBA.
-  Built with <a href="https://github.com/alshedivat/al-folio" target="_blank">al-folio</a>.
+  Hosted by GitHub Pages.
 keywords: 부산대학교, 부산대, IBA, 경영 데이터 분석, 학회, 동아리, 데이터 분석, 머신러닝
 lang: ko
 icon: logo/favicon.png # 브라우저 탭 아이콘 (assets/img/ 기준 경로)
 apple_touch_icon: /assets/img/logo/favicon.png # 아이폰 홈 화면 아이콘 (사이트 루트 기준 경로)
 
-url: https://pnuiba.pages.dev # 실제 배포 주소 (도메인을 연결하면 여기를 바꿔 주세요)
+url: https://pnuiba.github.io # 배포 주소 (GitHub Pages). 개인 도메인을 연결하면 여기를 바꿔 주세요
 baseurl: "" # 루트 도메인에 배포하므로 비워 둡니다
 last_updated: false
 impressum_path:
@@ -209,7 +209,7 @@ external_links:
   target: _blank
   exclude:
 
-# ImageMagick이 없어도 빌드되도록 꺼 둡니다 (Cloudflare 빌드 환경 단순화)
+# ImageMagick이 없어도 빌드되도록 꺼 둡니다 (GitHub Actions 빌드 환경 단순화)
 imagemagick:
   enabled: false
 

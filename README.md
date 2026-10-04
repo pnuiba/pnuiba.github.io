@@ -1,7 +1,7 @@
 # PNU IBA 홈페이지
 
 부산대학교 지능형 경영 데이터 분석 학회 IBA의 홈페이지입니다.
-[al-folio](https://github.com/alshedivat/al-folio) (Jekyll) 템플릿을 기반으로 하며, **Cloudflare Pages**로 무료 배포합니다.
+[al-folio](https://github.com/alshedivat/al-folio) (Jekyll) 템플릿을 기반으로 하며, **GitHub Pages**로 무료 배포합니다.
 
 > 내용 수정은 대부분 **Markdown(`.md`) 또는 YAML(`.yml`) 파일만 고치면 됩니다.**
 > 코드를 몰라도 GitHub 웹에서 파일을 열고 연필 아이콘(Edit)으로 고친 뒤 커밋하면, 몇 분 뒤 사이트에 반영됩니다.
@@ -13,23 +13,23 @@
 | 하고 싶은 일                     | 고칠 파일                                    | 방법                                                                 |
 | -------------------------------- | -------------------------------------------- | -------------------------------------------------------------------- |
 | 공지·소식 올리기                 | `_news/` 폴더                                | 기존 파일을 복사해 날짜·내용만 바꾸기 ([예시](#공지소식-추가))       |
-| 수상 내역 추가                   | `_data/awards.yml`                           | 해당 연도 `items`에 한 줄 추가 → 목록·차트 자동 반영                 |
+| 수상 내역 추가                   | `_data/awards.yml`                           | 해당 연도 `items`에 `title` 추가. 사진·코멘트·발표자료는 선택 (파일 맨 위 예시 참고) |
 | 부원 명단 추가                   | `_data/members.yml`                          | 파일 안 예시대로 추가 → 기수별로 자동 정렬                           |
 | 교류 활동(행사 사진) 추가        | `_projects/` 폴더 + `assets/img/activities/` | 사진 올리고 기존 파일 복사 ([예시](#교류-활동-추가))                 |
-| 커리큘럼 수정                    | `_data/curriculum.yml`                       | `title`, `items` 수정                                                |
-| FAQ 수정                         | `_data/faq.yml`                              | `q`(질문), `a`(답변) 추가                                            |
+| 커리큘럼 수정 (Home)             | `_data/curriculum.yml`                       | `title`, `items` 수정                                                |
+| FAQ 수정 (Join Us)               | `_data/faq.yml`                              | `q`(질문), `a`(답변) 추가                                            |
 | 연락처(메일·인스타·전화) 수정    | `_data/contact.yml`, `_data/socials.yml`     | 값만 바꾸기                                                          |
 | 모집 안내·일정 수정              | `_pages/recruit.md`                          | 본문 Markdown 수정                                                   |
 | 모집 포스터 교체                 | `assets/img/recruit/` + `_pages/recruit.md`  | 새 폴더에 포스터 올리고 맨 위 `posters:` 목록 경로 바꾸기            |
-| 학회 소개·교수님·조직도          | `_pages/introduction.md`, `assets/img/intro/` | 본문 수정 / 조직도 이미지는 같은 이름으로 덮어쓰기                  |
+| 학회 소개·교수님·조직도 (About)  | `_pages/introduction.md`, `assets/img/intro/` | 본문 수정 / 조직도 이미지는 같은 이름으로 덮어쓰기                  |
 | 홈 화면 문구                     | `_pages/about.md`                            | 본문 수정                                                            |
-| 상단 메뉴 구성                   | `_pages/menu-*.md`                           | `children` 목록 수정 (자세히는 [메뉴](#상단-메뉴))                   |
+| 상단 메뉴 구성                   | 각 페이지 맨 위 `nav`, `nav_order`           | 자세히는 [메뉴](#상단-메뉴)                                          |
 | 사이트 이름·설명·주소·하단 문구  | `_config.yml`                                | 맨 위 "사이트 기본 정보" 부분                                        |
 | 왼쪽 위 로고 문구(IBA / 작은 글씨) | `_config.yml`의 `title`, `brand_subtitle`  | 색·크기는 `_includes/header.liquid` 맨 위 `<style>`                  |
 
 ### 공지·소식 추가
 
-`_news/` 폴더에 `YYYY-MM-DD-영문이름.md` 파일을 만듭니다. 홈 화면 "최근 소식"과 상단 메뉴 "News"에 자동으로 표시됩니다.
+`_news/` 폴더에 `YYYY-MM-DD-영문이름.md` 파일을 만듭니다. 홈 화면 "NEWS!" 목록과 소식 전체 페이지(`/news/`, 홈의 NEWS! 제목을 누르면 이동)에 자동으로 표시됩니다.
 
 ```markdown
 ---
@@ -38,7 +38,7 @@ date: 2027-01-05
 inline: true
 ---
 
-:mega: **2027 IBA 13기 신입기수 모집** (01.05 ~ 01.19) — [모집 안내 보기]({{ '/recruit/' | relative_url }})
+:mega: **[2027 IBA 13기 신입기수 모집]({{ '/recruit/' | relative_url }})** (01.05 ~ 01.19)
 ```
 
 - `inline: true`면 목록에 한 줄로만 표시됩니다.
@@ -63,12 +63,36 @@ img: assets/img/activities/2026-spring-mt.jpg
 
 새 카테고리를 만들려면 `_pages/activities.md`의 `display_categories` 목록에도 추가해야 합니다.
 
+**홈 NEWS!에도 올리기**: 앞부분에 `news: true`와 `date`를 추가하면, 같은 파일 하나로 Activities 카드와 홈 NEWS!(날짜 + 제목 링크)에 함께 올라갑니다. 소식 파일(`_news/`)을 따로 만들 필요가 없습니다.
+
+```markdown
+---
+title: "11기 졸업식"
+description: "한 줄 소개"
+category: 행사
+importance: 1
+img: assets/img/activities/2026-graduation.jpg
+news: true # 홈 NEWS!에 표시
+date: 2026-08-22 # NEWS! 날짜 (news: true 일 때 필수)
+---
+```
+
 ### 상단 메뉴
 
-- 메뉴는 `_pages/menu-about.md`(About), `menu-activities.md`(Activities), `menu-join.md`(Join Us), `news.md`(News)로 구성됩니다. 메뉴와 페이지 제목은 영어, 본문은 한국어로 씁니다.
-- 순서는 `nav_order` 숫자로 정합니다.
-- 드롭다운 안의 `children` → `title`은 **해당 페이지 파일의 `title`과 글자까지 똑같아야** 메뉴에서 현재 페이지가 강조됩니다.
-- 새 페이지를 만들 때는 `_pages/`에 md 파일을 만들고 `permalink: /주소/`를 정한 뒤, 원하는 메뉴의 `children`에 추가하세요.
+하위 메뉴(드롭다운) 없이 6개 메뉴를 한 줄로 둡니다.
+
+| 메뉴       | 파일                     | 내용                                     |
+| ---------- | ------------------------ | ---------------------------------------- |
+| Home       | `_pages/about.md`        | 소개 + NEWS! + Curriculum + 1년 로드맵   |
+| About      | `_pages/introduction.md` | 학회 소개·지도교수·조직도 (`/about/`)    |
+| Members    | `_pages/members.md`      | 부원 명단                                |
+| Activities | `_pages/activities.md`   | 행사·특강·소모임 카드 (`_projects/`)     |
+| Awards     | `_pages/awards.md`       | 수상 실적                                |
+| Join Us    | `_pages/recruit.md`      | 지원 안내 + FAQ + Contact (`/recruit/`)  |
+
+- 메뉴에 보이는 이름은 각 파일의 `title`이고, 메뉴에 넣으려면 맨 위에 `nav: true`, 순서는 `nav_order` 숫자로 정합니다. 메뉴와 페이지 제목은 영어, 본문은 한국어로 씁니다.
+- 소식 전체 페이지(`news.md`)는 메뉴에 두지 않고 홈의 NEWS! 제목에서 연결합니다.
+- 예전 주소(`/introduction/`, `/curriculum/`, `/faq/`, `/contact/`)는 `_pages/redirects/`의 파일이 옮겨진 위치(홈의 Curriculum, Join Us의 FAQ·Contact, About)로 이동시킵니다.
 
 ### 이미지에 관해
 
@@ -87,8 +111,8 @@ img: assets/img/activities/2026-spring-mt.jpg
 | 사이트 검색 (Ctrl+K / ⌘K)      | 상단 검색 아이콘                       | `_config.yml`의 `search_enabled`                                                    |
 | 이미지 클릭 확대               | 교수님 사진, 조직도, 활동 사진         | `figure.liquid`에 `zoomable=true`                                                   |
 | 사진 갤러리 (좌우 넘기기)      | 모집 포스터                            | 페이지 맨 위에 `images: { lightbox2: true }`, 링크에 `data-lightbox="그룹이름"`     |
-| 차트 (ECharts)                 | 수상 건수 막대, 학과 분포 도넛         | 페이지 맨 위에 `chart: { echarts: true }`, 본문에 ` ```echarts ` 코드 블록          |
-| 접기/펼치기                    | 수상 내역, 커리큘럼, FAQ               | HTML `<details><summary>제목</summary>내용</details>`                               |
+| 차트 (ECharts)                 | 학과 분포 도넛 (About)                 | 페이지 맨 위에 `chart: { echarts: true }`, 본문에 ` ```echarts ` 코드 블록          |
+| 접기/펼치기                    | 커리큘럼, FAQ                          | HTML `<details><summary>제목</summary>내용</details>`                               |
 | 카드 + 카테고리                | 교류 활동                              | `_projects/` 파일의 `category`                                                      |
 | 스크롤 진행 바, 맨 위로 버튼   | 모든 페이지                            | `_config.yml`의 `enable_progressbar`, `back_to_top`                                 |
 
@@ -149,23 +173,17 @@ bundle exec jekyll build      # 배포용 빌드만 해보기 (_site 폴더 생�
 
 ---
 
-## 배포 (Cloudflare Pages)
+## 배포 (GitHub Pages)
 
-`main` 브랜치에 push 되면 Cloudflare Pages가 자동으로 빌드·배포합니다.
+`main` 브랜치에 push(머지)되면 GitHub Actions(`.github/workflows/build.yml`)가 빌드해서 **https://pnuiba.github.io** 에 자동 배포합니다.
 
-**최초 설정 (관리자 1회)**: Cloudflare 대시보드 → **Workers & Pages → Create → Pages → Connect to Git** → 이 저장소 선택
+**최초 설정 (관리자 1회)**: 저장소 **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions**로 선택
 
-| 설정                   | 값                                     |
-| ---------------------- | -------------------------------------- |
-| Production branch      | `main`                                 |
-| Framework preset       | `Jekyll`                               |
-| Build command          | `bundle exec jekyll build`             |
-| Build output directory | `_site`                                |
-| Environment variables  | `JEKYLL_ENV` = `production`            |
-
+- 테마 gem(`al_folio_core`)과 플러그인을 쓰기 때문에 GitHub Pages 기본 빌드(Deploy from a branch)로는 빌드되지 않습니다. 반드시 GitHub Actions를 선택하세요.
 - Ruby 버전은 저장소의 `.ruby-version`(3.3.5)을 자동으로 사용합니다.
-- 배포 주소가 정해지면(예: `https://pnuiba.pages.dev` 또는 연결한 도메인) `_config.yml`의 `url`을 그 주소로 맞춰 주세요. 링크 미리보기·사이트맵에 쓰입니다.
-- PR을 올리면 GitHub Actions(`.github/workflows/build.yml`)가 빌드가 깨지지 않는지 먼저 확인합니다. Cloudflare는 PR마다 미리보기 주소도 만들어 줍니다.
+- PR을 올리면 같은 워크플로가 빌드만 해서 깨지지 않는지 확인하고, 배포는 하지 않습니다.
+- 배포 진행 상황은 저장소 **Actions** 탭에서 볼 수 있고, 수동으로 다시 배포하려면 Actions → Build and deploy → **Run workflow**를 누릅니다.
+- 개인 도메인을 연결하면 `_config.yml`의 `url`을 그 주소로 바꿔 주세요. 링크 미리보기·사이트맵에 쓰입니다.
 
 ---
 
@@ -173,7 +191,7 @@ bundle exec jekyll build      # 배포용 빌드만 해보기 (_site 폴더 생�
 
 ```text
 _config.yml         사이트 전체 설정
-_pages/             각 페이지 (홈, 소개, 수상, 커리큘럼, 활동, 모집, FAQ, 문의, 메뉴)
+_pages/             각 페이지 (홈, About, Members, Activities, Awards, Join Us, 소식) + redirects/(예전 주소 이동)
 _data/              목록형 데이터 (수상, 부원, 커리큘럼, FAQ, 연락처, SNS)
 _news/              공지·소식
 _projects/          교류 활동 카드 (행사 하나 = 파일 하나)
@@ -194,7 +212,7 @@ Gemfile             사용하는 플러그인 목록 (_config.yml 의 plugins �
 ## 협업 방식
 
 1. `main`에서 새 브랜치를 만들어 작업합니다 (예: `content/2027-awards`).
-2. PR을 올리고, GitHub Actions 빌드 확인이 통과하는지와 Cloudflare 미리보기 주소에서 화면을 확인합니다.
+2. PR을 올리고, GitHub Actions 빌드 확인이 통과하는지와 로컬 미리보기(`localhost:4000`)에서 화면을 확인합니다.
 3. 검토 후 `main`에 merge하면 자동 배포됩니다.
 
 간단한 글자 수정은 GitHub 웹에서 바로 고쳐도 됩니다.

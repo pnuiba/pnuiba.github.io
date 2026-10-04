@@ -1,0 +1,27 @@
+{% comment %}
+  [PNU IBA] 소식 목록 (홈 NEWS, /news/ 페이지 공용). 테마 파일이 아니라 새로 만든 include 입니다.
+  - _news/ 의 소식 + _projects/ 중 news: true 이고 date 가 있는 활동을 날짜 최신순으로 합쳐 보여 줍니다.
+  - 활동 제목을 누르면 Activities 페이지로 이동해 그 활동 사진이 바로 크게 열립니다.
+  - 사용: {% include iba_news_list.liquid limit=5 %}  (limit 생략 시 전체)
+{% endcomment %}
+{% assign announced = site.projects | where_exp: "p", "p.news == true and p.date" %}
+{% assign items = site.news | concat: announced | sort: "date" | reverse %}
+{% if include.limit %}{% assign news_limit = include.limit %}{% else %}{% assign news_limit = items.size %}{% endif %}
+<table class="table table-sm table-borderless home-news">
+  {% for item in items limit: news_limit %}
+    <tr>
+      <th scope="row">{{ item.date | date: '%Y.%m.%d' }}</th>
+      <td>
+        {% if item.collection == 'projects' %}
+          <a class="news-title" href="{{ '/activities/' | relative_url }}#activity-{{ item.slug }}">{{ item.title }}</a>
+        {% elsif item.inline %}
+          {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+        {% else %}
+          <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% else %}
+    <tr><td>아직 등록된 소식이 없습니다.</td></tr>
+  {% endfor %}
+</table>
