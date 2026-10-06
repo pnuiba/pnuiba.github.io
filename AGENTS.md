@@ -1,6 +1,6 @@
 # Agent guide — PNU IBA homepage
 
-Club website for PNU IBA, built on the al-folio v1 Jekyll starter and deployed to GitHub Pages via GitHub Actions (`.github/workflows/build.yml`). Read `README.md` first; it is the maintainer guide and maps every content task to a file.
+Club website for PNU IBA, built on the al-folio v1 Jekyll starter and deployed to GitHub Pages via GitHub Actions (`.github/workflows/build.yml`). Content tasks map to files as described in the Rules below.
 
 ## Rules
 

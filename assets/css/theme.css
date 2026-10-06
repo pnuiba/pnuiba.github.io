@@ -8,10 +8,11 @@
  * 구성
  *   1. 토큰      : shadcn 변수 (Neutral 베이스 + IBA 블루를 primary로)
  *   2. 매핑      : al-folio 변수(--global-*) → shadcn 토큰
- *   3. 기본      : 폰트(에이투지체, Pretendard 대체), 제목, 링크
+ *   3. 기본      : 폰트(영문 에이투지체, 한글 Pretendard), 제목, 링크
  *   4. 컴포넌트  : Navbar, Dropdown, Card, Button, Badge, Accordion(details), Table, Footer
  *   5. 홈 화면   : 소개 + NEWS! 목록
  *   6. Awards    : 연도별 세로 타임라인
+ *   6-1. Members : 기수 탭 + 이름 그리드
  *   7. Join Us   : 접기/펼치기 항목
  *
  * 색을 바꾸려면 1번 토큰 값만 고치면 됩니다.
@@ -112,24 +113,27 @@ html[data-theme="dark"] {
  * 3. 기본 타이포그래피
  * -------------------------------------------------------------------------- */
 
-/* 에이투지체 (본문·제목) — 눈누 무료 폰트 */
+/* 에이투지체 (영문·숫자만) — 눈누 무료 폰트. unicode-range 로 한글은 제외해서 한글은 Pretendard 로 표시 */
 @font-face {
   font-family: "A2z";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2") format("woff2");
   font-weight: 300;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02DC, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215;
 }
 @font-face {
   font-family: "A2z";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02DC, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215;
 }
 @font-face {
   font-family: "A2z";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-8ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02DC, U+2000-206F, U+20AC, U+2122, U+2190-2199, U+2212, U+2215;
 }
 
 /* 기본 글자 크기 15px (rem 단위 전체가 함께 작아짐) */
@@ -889,6 +893,54 @@ article .award-title {
     gap: 0.9rem;
   }
 
+}
+
+/* -----------------------------------------------------------------------------
+ * 6-1. Members (_pages/members.md) — 기수 탭(Awards 탭 공유) + 4열 이름 그리드
+ *      칸 하나 = [이름] [학과] [직책·진로(흐린 글씨)]
+ * -------------------------------------------------------------------------- */
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3rem 2rem;
+  margin: 0;
+  padding: 2.5rem 0 0;
+  text-align: center;
+  list-style: none;
+}
+
+.member p {
+  margin: 0;
+}
+
+/* 이 페이지만 기수 탭도 가운데 정렬 */
+body:has(.members-grid) .awards-tabs {
+  justify-content: center;
+}
+
+.member-name {
+  margin-bottom: 0.35rem !important;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.member-dept {
+  font-size: 0.85rem;
+  word-break: keep-all;
+}
+
+.member-note {
+  margin-top: 0.15rem !important;
+  color: var(--muted-foreground);
+  font-size: 0.8rem;
+  word-break: keep-all;
+}
+
+@media (max-width: 768px) {
+  .members-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* -----------------------------------------------------------------------------
