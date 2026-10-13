@@ -1,0 +1,31 @@
+# Jekyll 빌드 결과물 / 캐시
+_site
+.jekyll-cache
+.jekyll-metadata
+.sass-cache
+.tweet-cache
+al-folio-upgrade-report.md
+
+# Ruby gem 설치 위치 (bundle config path vendor/bundle)
+.bundle
+vendor
+
+# OS / 에디터
+.DS_Store
+.DS_store
+.idea
+.vscode/*
+!.vscode/extensions.json
+node_modules/
+
+# 로컬 자료 / 임시 작업물 (사이트에서 쓰는 사진·PDF는 assets/에 보관)
+source-materials/
+임시폴더/
+.local/
+__pycache__/
+*.pyc
+
+AGENTS.md
+CLAUDE.md
+/docs/
+/scripts/

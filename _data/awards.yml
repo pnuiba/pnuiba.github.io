@@ -1,0 +1,547 @@
+# 수상 내역 (/awards/ 페이지)
+#
+# 연도(term)별로 묶습니다. 페이지 위 탭에서 연도를 고르면 그 해의 수상만 보입니다.
+#   - 연도마다 "YYYY" 칸 하나입니다. 수상일(date) 기준으로 넣어 주세요.
+#     (items: [] 를 items: 로 바꾸고 그 아래에 - title: ... 줄을 붙여 넣으면 됩니다)
+#   - 수상이 없는 연도는 페이지에 표시되지 않습니다.
+#   - 최신 연도를 맨 위에, 칸 안에서는 최신 수상을 위에 둡니다. 수상이 있는 연도 중 맨 위가 처음 열릴 때 기본으로 보입니다.
+#
+# 수상마다 왼쪽에 사진 칸, 오른쪽에 Comment 칸이 항상 표시됩니다. title 만 필수이고 나머지는 채운 것만 보입니다.
+#
+#   예)  term: "2026"
+#        items:
+#          - title: "제 4회 전국 대학(원)생 리스크관리 경진대회"
+#            grade: ["장려상"]                          # 수상 등급 라벨 (여러 개면 쉼표로)
+#            date: 2026-05-28                          # 수상일 (모르면 생략. 사진·Summary·발표자료가 없는 수상은 연도 맨 아래 목록으로 간단히 표시)
+#            id: 2026-risk-smart-shield                # date 와 id 가 모두 있으면 홈 NEWS! 에 최신순 5개까지 자동으로 표시
+#            members: ["홍길동(11기)", "김철수(12기)"]     # 수상자 (제목 바로 아래 한 줄)
+#            teams:                                    # 한 대회에서 등급별로 수상자가 다르면 members 대신 이렇게
+#              - grade: 대상                            #   → 제목 아래 "[대상] 8기 OOO · 9기 OOO" 한 줄씩
+#                members: ["OOO(8기)", "OOO(9기)"]
+#              - grade: 우수상
+#                members: ["OOO(9기)", "OOO(10기)"]
+#            image: assets/img/awards/2026-risk/01.jpg    # 사진 한 장 (가로 16:9 권장, 발표자료 표지 비율)
+#            images:                                   # 사진 여러 장이면 image 대신 이렇게. 첫 장이 대표 사진
+#              - assets/img/awards/2026-risk/01.jpg
+#              - assets/img/awards/2026-risk/02.jpg
+#            organizer: "주최 기관명"
+#            comment: "어떤 문제를 어떻게 풀었는지 1~3문장"   # 페이지에는 Summary 로 표시
+#            slides: assets/pdf/awards/2026-risk.pdf   # 발표자료 (PDF 권장, 구글 슬라이드 등 링크 URL도 가능)
+
+# ----- 2026 -----
+- term: "2026"
+  items:
+    - title: "DB보험금융공모전"
+      grade: ["가작"]
+
+    - title: "제7회 PNU 창의융합 AI해커톤"
+      id: 2026-pnu-ai-plan-u
+      grade: ["대상"]
+      date: 2026-08-28
+      members: ["한고은(9기)", "이민석(10기)"]
+      slides: assets/pdf/awards/2026-pnu-ai-plan-u.pdf
+      images:
+        - assets/img/awards/2026-pnu-ai-plan-u/01.png
+        - assets/img/awards/2026-pnu-ai-plan-u/02.png
+        - assets/img/awards/2026-pnu-ai-plan-u/03.png
+      organizer: "부산대학교"
+      comment: "부산대학교 학생을 위한 맞춤형 학업 설계 서비스 Plan U. Plan_U는 졸업요건 분석부터 성장 로드맵과 시간표 추천까지 연결하는 AI 기반 학업 설계 플랫폼입니다."
+
+    - title: "제7회 PNU 창의융합 AI해커톤"
+      id: 2026-pnu-ai-yfin
+      grade: ["최우수상"]
+      date: 2026-08-28
+      members: ["이서빈(11기)"]
+      slides: assets/pdf/awards/2026-pnu-ai-yfin.pdf
+      images:
+        - assets/img/awards/2026-pnu-ai-yfin/01.jpg
+        - assets/img/awards/2026-pnu-ai-yfin/02.jpg
+        - assets/img/awards/2026-pnu-ai-yfin/03.jpg
+      organizer: "부산대학교 AI융합교육원"
+      comment: "Y-Fin. — 금융이 처음인 청년을 위한 맞춤 저축상품 추천 서비스. 흩어진 정부·은행 저축상품을 한곳에 모아, 자격요건 필터링과 맞춤 정렬로 청년에게 맞는 상품을 찾아 신청까지 돕는 서비스입니다."
+
+    - title: "2026 보훈공공데이터 AI 활용 아이디어 공모전"
+      id: 2026-veterans-hospital
+      slides: assets/pdf/awards/2026-veterans-hospital.pdf
+      images:
+        - assets/img/awards/2026-veterans-hospital/01.png
+      grade: ["장려상"]
+      date: 2026-08-27
+      members: ["강민균(9기)", "박정은(9기)"]
+      organizer: "국가보훈부"
+      comment: "AI 기반 준보훈병원 입지 및 커버리지 분석. 전국 보훈대상자의 의료 접근성을 분석하고, 제한된 예산으로 가장 많은 미충족 수요를 해소할 준보훈병원 입지를 제안한 공간 최적화 프로젝트입니다."
+
+    - title: "2026년 미래내일 일경험 지원사업 프로젝트형"
+      id: 2026-work-experience-ojimae
+      slides: assets/pdf/awards/2026-work-experience-ojimae.pdf
+      images:
+        - assets/img/awards/2026-work-experience-ojimae/01.png
+        - assets/img/awards/2026-work-experience-ojimae/02.png
+      grade: ["우수상"]
+      date: 2026-08-21
+      members: ["문지수(11기)", "박비원(11기)", "배석범(11기)", "전재민(11기)"]
+      organizer: "해냄 주식회사"
+      comment: "자갈치오지매 온오프라인 판매 데이터 자동취합 분석 시스템 프로젝트. 파편화된 온라인 데이터를 자동 취합하여 통합 DB를 구축하는 자동화 파이프라인 및 대시보드 제작 프로젝트입니다."
+
+    - title: "KOSSDA 2026 대학생 데이터 시각화 공모전"
+      id: 2026-kossda-minimum-wage
+      slides: assets/pdf/awards/2026-kossda-minimum-wage.pdf
+      images:
+        - assets/img/awards/2026-kossda-minimum-wage/01.png
+      grade: ["우수상"]
+      date: 2026-08-03
+      members: ["강민균(9기)", "박정은(9기)"]
+      organizer: "서울대학교 한국사회과학자료원"
+      comment: "최저임금 인상은 더 나은 내일을 약속하는가? — 거시-미시 데이터 교차 검증을 통한 노동 시장 구조 분석. 최저임금 인상이 저임금 노동자의 임금뿐 아니라 직종 간 임금구조, 숙련 유인, 근로시간과 계층 인식에 미친 영향을 분석했습니다."
+
+    - title: "DIVE 2026 해커톤"
+      id: 2026-dive-bugagachi
+      grade: ["발제사 3등상"]
+      date: 2026-07-26
+      members: ["김기영(11기)", "배석범(11기)", "이서빈(11기)"]
+      organizer: "부산광역시"
+      comment: "부가가치 — 상권·취향 기반 공공임대주택 추천 서비스. 내 자격으로 신청할 수 있는 부산의 공공임대주택을 내 취향과 라이프스타일에 맞게 지도 위에서 찾아주는 맞춤 추천 서비스입니다."
+      slides: assets/pdf/awards/2026-dive-bugagachi.pdf
+      images:
+        - assets/img/awards/2026-dive-bugagachi/01.png
+        - assets/img/awards/2026-dive-bugagachi/02.png
+        - assets/img/awards/2026-dive-bugagachi/03.png
+
+    - title: "제4회 전국 대학(원)생 리스크 관리 경진대회"
+      id: 2026-risk-smart-shield
+      grade: ["장려상"]
+      date: 2026-05-28
+      members: ["신동욱(8기)", "한고은(9기)", "전형준(10기)"]
+      members_note: "외 1인"
+      organizer: "삼성화재 × POSTECH × 서울대학교"
+      comment: "스마트팜 맞춤형 보험 설계: Smart Shield. 스마트팜의 복합 리스크(물리적·생육·운영중단·디지털 손해)에 대응하는 AI 기반 파라메트릭 보험을 제안했습니다. 농촌진흥청의 4년치 환경 데이터(1,247만 행)와 농업정책보험금융원의 23년 통계를 바탕으로 5개 작물의 보험료율(4~7%)을 산출하고, LightGBM으로 7일 후 작물 스트레스를 예측해 농가에 사전 경보를 제공합니다. 보험계리(Engine A)와 AI 사전 경보(Engine B)를 분리해 AI 예측 정확도가 보험금 지급 정합성에 영향을 주지 않도록 설계했습니다."
+      slides: assets/pdf/awards/2026-risk-smart-shield.pdf
+      images:
+        - assets/img/awards/2026-risk-smart-shield/01.png
+        - assets/img/awards/2026-risk-smart-shield/02.png
+
+    - title: "2026 하나 소셜벤처 유니버시티 아이디어 경진대회"
+      id: 2026-hana-farmfi
+      grade: ["최우수상"]
+      date: 2026-05-27
+      members: ["우민성(9기)", "박태정(10기)", "이정서(10기)"]
+      slides: assets/pdf/awards/2026-hana-farmfi.pdf
+      images:
+        - assets/img/awards/2026-hana-farmfi/01.png
+      organizer: "하나금융그룹"
+      comment: "팜피(FarmFi). 도심의 늘어나는 공실 상가를 스마트팜(미니팜)으로 전환하고, 그 자금을 STO(토큰증권) 방식으로 소액 투자자에게서 모집하는 웹 플랫폼입니다."
+
+    - title: "신한 20+ 뛰어요 마케팅 전략 공모전"
+      id: 2026-shinhan-sol-marketing
+      grade: ["최우수상"]
+      date: 2026-04-28
+      members: ["안현준(10기)"]
+      members_note: "외 3인"
+      organizer: "신한은행"
+      comment: "‘신한 20+ 뛰어요’의 새로운 마케팅 전략 도출. 신한은행의 20대 고객 확보를 위한 마케팅 전략을 제시했습니다. 신한은행 앱 리뷰 크롤링과 20대 500명 대상 설문조사를 통해 러너와 비러너의 인식 차이와 필요 요소를 분석했습니다. 이를 바탕으로 인지도 확대(Spread), 러너 유지(Onboard), 비러너와 러닝 연결(Link)의 SOL 3축 개선 프레임워크를 도출했습니다."
+      slides: assets/pdf/awards/2026-shinhan-sol-marketing.pdf
+      images:
+        - assets/img/awards/2026-shinhan-sol-marketing/01.png
+
+    - title: "2026 LH COMPAS 국토도시 데이터 분석 공모전"
+      id: 2026-lh-compas-system-pusan
+      grade: ["최우수상"]
+      date: 2026-04-15
+      members: ["심성철(10기)", "안현준(10기)", "이민석(10기)", "황현석(10기)"]
+      organizer: "한국토지주택공사"
+      comment: "신도시 교통 인프라 데이터 분석을 통한 3기 신도시 어린이 등 취약계층 교통안전 대안 제시. 2기 신도시들의 교통 데이터를 분석해 3기 신도시인 하남 교산에 설치할 스마트 교통안전 시설물의 위치를 예측했습니다. HDBSCAN 클러스터링으로 지역별 사고 패턴과 원인을 분석하고 머신러닝 기반 사고 위험도 예측 모델을 구축해, 3기 신도시의 잠재적 고위험 지역과 맞춤형 교통안전 대안을 제시했습니다."
+      slides: assets/pdf/awards/2026-lh-compas-system-pusan.pdf
+      images:
+        - assets/img/awards/2026-lh-compas-system-pusan/01.png
+        - assets/img/awards/2026-lh-compas-system-pusan/02.png
+
+    - title: "2026 미래도서관 정책 아이디어 해커톤대회"
+      id: 2026-future-library-voucher
+      grade: ["최우수상"]
+      date: 2026-04-08
+      members: ["한고은(9기)", "박태정(10기)"]
+      organizer: "문화체육관광부"
+      comment: "납본 보상 바우처화를 통한 출판 생태계 순환 설계. 국가문헌 보존과 창작자 보상을 위한 납본 제도에서, 형식만 갖춘 자료도 동일한 현금 보상을 받을 수 있다는 점에 주목했습니다. AI 판별이나 창작성 심사 없이 납본 보상을 현금에서 출판 생태계 전용 바우처로 전환하고, 재화 구매 대신 용역·서비스에만 사용하도록 제안했습니다. 보상 방식의 재설계를 통해 AI 대량출판의 경제적 유인을 조정하고, 납본 보상이 출판 생태계 안에서 순환하는 지속가능한 제도 운영 기반을 마련하고자 했습니다."
+      slides: assets/pdf/awards/2026-future-library-voucher.pdf
+      images:
+        - assets/img/awards/2026-future-library-voucher/01.png
+        - assets/img/awards/2026-future-library-voucher/02.png
+
+# ----- 2025 -----
+- term: "2025"
+  items:
+    - title: "2025 B.D.A × 동서발전 × 60Hz 풍력 발전량 예측 공모전"
+      id: 2025-wind-yepungso
+      grade: ["장려상"]
+      date: 2025-12-22
+      members: ["강민균(9기)", "고대광(9기)", "김민기(9기)"]
+      comment: "풍력 발전량 예측. 풍속의 비선형성, 난류 강도, 공기 밀도 등 물리적 특성을 반영한 파생 변수와 시차 변수를 생성해 데이터 패턴을 구체화했습니다. LightGBM과 XGBoost 기반의 시간대별 동적 가중 앙상블 전략으로 시간대 및 발전량 구간별 모델을 최적화해 예측 정확도를 높였습니다."
+      slides: assets/pdf/awards/2025-wind-yepungso.pdf
+      images:
+        - assets/img/awards/2025-wind-yepungso/01.png
+
+    - title: "2025 리모트인턴십 덱스톤"
+      id: 2025-remote-internship-olive-young
+      grade: ["최우수상"]
+      date: 2025-12-12
+      members: ["박태정(10기)", "오정린(10기)"]
+      members_note: "외 3인"
+      comment: "올리브영 매출 성과 및 프로모션 효과 분석을 통한 전략 방향 수립. 권역별·상품군별 매출 및 프로모션 데이터의 탐색적 분석(EDA)을 통해 권역마다 주력 상품군이 다르다는 점을 확인했습니다. 이를 근거로 전국 단일 프로모션의 한계를 짚고 권역별 차별화 전략을 제시했으며, 다중회귀분석으로 각 권역에서 매출에 유의미한 프로모션 요인을 검증했습니다."
+      slides: assets/pdf/awards/2025-remote-internship-olive-young.pdf
+      images:
+        - assets/img/awards/2025-remote-internship-olive-young/01.png
+
+    - title: "제 7회 대구 빅데이터 분석 경진대회"
+      grade: ["1등"]
+
+    - title: "제8회 부증련 기업분석대회"
+      id: 2025-bujeung-hybe
+      grade: ["대상"]
+      date: 2025-12-06
+      members: ["정현우(8기)"]
+      members_note: "외 3인"
+      organizer: "부산국제금융진흥원"
+      comment: "하이브 기업분석 및 주가 예측. 2021년 ‘하이브’로 사명을 변경한 이후 본격화된 멀티 레이블 체제를 분석했습니다. BTS 완전체 컴백, 캣츠아이를 통한 멀티플 향상, MD를 통한 2026년 매출 극대화와 안정적 수익 기반을 주요 투자포인트로 제시했습니다."
+      slides: assets/pdf/awards/2025-bujeung-hybe.pdf
+      images:
+        - assets/img/awards/2025-bujeung-hybe/01.png
+        - assets/img/awards/2025-bujeung-hybe/02.png
+
+    - title: "2025 청년일경험 지원사업 프로젝트형"
+      id: 2025-work-experience-eongtta
+      grade: ["대상"]
+      date: 2025-12-05
+      members: ["홍예원(7기)", "박정은(9기)", "이나연(9기)", "이채희(9기)"]
+      partner: "웨이브앤바이브"
+      comment: "브랜드 경험 중심 인터랙티브 웹사이트 기획 및 구현. 8주간 웨이브앤바이브와 협력하며 매주 실무 피드백을 받아 기존 웹사이트의 UI/UX 한계를 진단하고 브랜딩 방향과 UX 흐름을 정립했습니다. 브랜드 가치를 전달하는 ‘국밥 만들기 게임’과 고객 취향 데이터를 수집하는 ‘나만의 퍼스널 국밥 찾기’를 기획했습니다. Cursor로 웹페이지를 구현하고 Supabase 데이터베이스를 연동해 Vercel에 배포했으며, 식당 테이블에 QR 코드를 배치해 오프라인 고객의 홈페이지 유입을 늘리는 전략을 수립했습니다."
+      slides: assets/pdf/awards/2025-work-experience-eongtta.pdf
+      images:
+        - assets/img/awards/2025-work-experience-eongtta/01.png
+
+    - title: "2025 청년일경험 지원사업 프로젝트형"
+      id: 2025-work-experience-yaho
+      grade: ["우수상"]
+      date: 2025-12-05
+      members: ["장지원(8기)", "우민성(9기)", "이정훈(9기)", "최경아(9기)"]
+      partner: "후아"
+      comment: "세일링 요트의 부유물 충돌 사고 예방을 위한 AI 기반 해양 부유물 인식 시스템. 8주간 후아와 협력하며 매주 실무 피드백을 받아 요트 콕핏 시점 이미지 약 200장을 수집했습니다. 시간대 변환, 환경 효과, 노이즈 추가 등 11가지 데이터 증강 시나리오를 적용해 학습 데이터 8,149장을 구축하고 10개 클래스로 라벨링했습니다. YOLOv8s 전이학습으로 mAP@50 약 72.9%를 달성해 실시간 부유물 탐지 시스템의 기술적 가능성을 검증했습니다."
+      slides: assets/pdf/awards/2025-work-experience-yaho.pdf
+      images:
+        - assets/img/awards/2025-work-experience-yaho/01.png
+
+    - title: "데이터로 상상하는 K-Culture 굿즈 아이디어톤"
+      id: 2025-k-culture-nfc-keyring
+      grade: ["대상"]
+      date: 2025-11-27
+      members: ["황현석(10기)"]
+      members_note: "외 3인"
+      comment: "부산대학교 학생 생활 편의 향상을 위한 사용자 맞춤형 NFC 키링 기획 및 수요 예측 프로젝트. 통계연보의 재학생 데이터를 코호트 분석과 선형 회귀로 분석해 2026년 예상 재학생 규모를 약 19,668명으로 추산했습니다. 에브리타임 학생증 관련 게시글 3,600건을 SBERT와 kiwi로 분석해 분실 위험과 휴대성 저하를 확인하고 NFC 키링의 필요성을 검증했습니다. 13개 대학의 굿즈 사례와 설문 결과에 대한 컨조인트 분석을 통해 금정산 능선을 형상화한 정사면체 디자인과 다기능 NFC 구성을 도출하고, 캠퍼스 내 활용 지점을 조사해 인프라 호환성을 확인했습니다. 구매 점수와 실현율로 판매량 및 수익성을 예측해 시장 출시 가능성과 학생 생활 편의 증진 효과를 제시했습니다."
+      images:
+        - assets/img/awards/2025-k-culture-nfc-keyring/01.png
+        - assets/img/awards/2025-k-culture-nfc-keyring/02.png
+
+    - title: "데이터로 상상하는 K-Culture 굿즈 아이디어톤"
+      id: 2025-k-culture-geumjeong-hiking
+      grade: ["장려상"]
+      date: 2025-11-27
+      members: ["심성철(10기)"]
+      members_note: "외 4인"
+      comment: "금정산 스토리 기반 하이킹 관광 굿즈 기획. 외국인 관광객의 자연 체험형 관광 수요 증가와 부산 관광의 지역 편중에 주목해 금정산을 금정구 관광의 핵심 거점으로 설정했습니다. 네이버 지도 금정산 리뷰를 크롤링해 방문객의 관심 요소를 분석하고, 언급 빈도가 높았던 고당봉과 금샘 설화를 중심으로 캐릭터 굿즈를 기획했습니다. 방문 경로 분석을 바탕으로 범어사역과 금정산성 북문을 주요 판매 지점으로 선정해 하이킹 관광 수요를 소비와 지역 활성화로 연결하고자 했습니다."
+      images:
+        - assets/img/awards/2025-k-culture-geumjeong-hiking/01.png
+
+    - title: "2025 지·산·학 연계 산업 수학 데이터 탐구 경진대회"
+      id: 2025-industrial-math-deobeora
+      grade: ["대상"]
+      date: 2025-11-24 # 행사 사진의 운영 일시 및 발표자료에서 확인
+      members: ["박민규(5기)", "홍예원(7기)", "장지원(8기)", "노영훈(10기)"]
+      organizer: "부산대학교 산업수학센터"
+      comment: "부산시 고령층 폭염 취약계층 보호를 위한 무더위쉼터 최적 입지 분석. 데이터 기반 MCLP 알고리즘으로 무더위쉼터의 최적 입지를 선정하고 정책을 제안했습니다. 노인 인구가 많은 해운대구와 인구 밀도가 낮은 강서구를 집중 분석해 기존 쉼터의 편중 문제를 짚고, 학교와 민간 시설을 활용한 효율적인 쉼터 확대 방안을 제시했습니다."
+      slides: assets/pdf/awards/2025-industrial-math-deobeora.pdf
+      images:
+        - assets/img/awards/2025-industrial-math-deobeora/01.png
+
+    - title: "2025 지·산·학 연계 산업 수학 데이터 탐구 경진대회"
+      id: 2025-industrial-math-chocoheim
+      grade: ["최우수상"]
+      date: 2025-11-24 # 행사 사진의 운영 일시 및 발표자료에서 확인
+      members: ["박태정(10기)", "오정린(10기)", "이민석(10기)", "이정서(10기)"]
+      organizer: "부산대학교 산업수학센터"
+      comment: "사회·경제적 요인이 부산시 구·군별 미분양 주택에 미치는 영향 분석. 고정효과 회귀와 분위수 회귀 분석으로 사회·경제적 요인의 영향을 검증하고, 분석 결과를 바탕으로 지역별 차별화된 부동산 전략을 제안했습니다."
+      slides: assets/pdf/awards/2025-industrial-math-chocoheim.pdf
+      images:
+        - assets/img/awards/2025-industrial-math-chocoheim/01.png
+
+    - title: "2025 지·산·학 연계 산업 수학 데이터 탐구 경진대회"
+      id: 2025-industrial-math-palette
+      grade: ["우수상"]
+      date: 2025-11-24 # 행사 사진의 운영 일시 및 발표자료에서 확인
+      members: ["강민균(9기)", "박정은(9기)", "안현준(10기)", "전형준(10기)"]
+      organizer: "부산대학교 산업수학센터"
+      comment: "부산시 폐업 리스크에 선제적으로 대응하기 위한 영업압박도지수 개발. 공시지가, 카드 매출액, 유동인구 등 부산시 데이터를 수집하고 릿지 회귀를 통해 영업압박도지수를 개발했습니다. 창업자와 지역은행, 지자체가 이를 활용해 관련 전략과 정책, 대응 방안을 마련할 수 있도록 제안했습니다."
+      slides: assets/pdf/awards/2025-industrial-math-palette.pdf
+      images:
+        - assets/img/awards/2025-industrial-math-palette/01.png
+
+    - title: "삼성화재 리스크 관리 경진대회"
+      grade: ["장려상"]
+
+    - title: "한국장학재단 & 과학기술정보통신부 25기 대통령과학장학생"
+      grade: ["선정"]
+
+    - title: "2025 뉴스빅데이터 해커톤"
+      id: 2025-news-bigdata-osori
+      grade: ["최우수상"]
+      date: 2025-08-25
+      members: ["김태연(7기)", "황가희(7기)", "송찬호(9기)", "정재영(10기)"]
+      organizer: "한국언론진흥재단"
+      comment: "오소리: 오늘의 소리 — 생성형 AI를 활용한 실시간 뉴스 팩트 브리핑 및 균형 토의 팟캐스트 콘텐츠 생성 서비스. 정보 과잉 환경에서 필요한 뉴스를 효율적으로 선별하고 이해하기 어려운 문제를 해결하고자, 생성형 AI와 뉴스 빅데이터(BigKinds)를 활용한 맞춤형 시사 팟캐스트 자동 생성 시스템을 설계·구현했습니다. 사용자가 선택한 카테고리와 키워드로 뉴스를 선별하고, LLM으로 다양한 관점을 반영한 대화형 대본을 생성한 뒤 TTS로 음성 콘텐츠를 제공합니다. 뉴스 소비의 접근성과 편의성을 높이고 개인화된 정보 제공 서비스의 가능성을 제시했습니다."
+      slides: assets/pdf/awards/2025-news-bigdata-osori.pdf
+      images:
+        - assets/img/awards/2025-news-bigdata-osori/01.png
+        - assets/img/awards/2025-news-bigdata-osori/02.png
+
+    - title: "DIVE 2025 해커톤 BNK금융그룹 발제사"
+      id: 2025-dive-bnk-two-track
+      grade: ["3등"]
+      date: 2025-08-24 # 발표자료 표지에서 확인
+      members: ["박민규(5기)", "서호영(8기)", "장지원(8기)", "이정훈(9기)"]
+      comment: "거래 유형별 BNK 고객 분류·분석 및 관리 방안 제언. 이자이익 의존도 심화와 비이자이익 감소에 대응해 두 수익원을 독립적으로 분석하는 투트랙(Two-track) 접근법을 제시했습니다. 비이자이익 측면에서는 K-means로 고객을 Basic·Standard·Premium·VIP로 세분화하고, 단계적 상향 이동을 유도하는 성장 사다리 전략과 상품 간 연관성에 기반한 교차 확장 전략을 도출했습니다. 이자이익 측면에서는 대출 상품별 고객 프로필을 분석해 잠재고객 발굴과 생애주기별 맞춤 관리를 제안했습니다. 이를 통해 63%에 달하는 비이자상품 미이용 고객층 활성화와 대출 상품 정밀 타겟팅을 통한 수익 구조 다변화 방안을 제시했습니다."
+      images:
+        - assets/img/awards/2025-dive-bnk-two-track/01.png
+        - assets/img/awards/2025-dive-bnk-two-track/02.png
+
+    - title: "2025 핀테크 연구 아이디어 경진대회"
+      id: 2025-fintech-boin
+      grade: ["대상"]
+      date_label: "2025"
+      members: ["오정린(10기)"]
+      members_note: "외 3인"
+      comment: "보험 약관 요약 및 리스크 분석을 위한 AI 웹 플랫폼 BOIN(Better Option Insurance). 복잡한 보험 정보를 소비자가 이해하고 더 나은 선택을 할 수 있도록 보험 약관에 특화된 서비스를 개발했습니다. GPT 기반 Few-shot Prompting과 문서 참조 기법을 활용하고, 보험사 약관·상품요약서, 금융감독원 보험 분쟁 사례, 보험개발원 보험 용어사전 등 보험 특화 데이터를 기반으로 전용 AI를 구축했습니다. 약관 요약, 챗봇, 용어사전, 분쟁 사례 소개, 정리 노트 기능으로 약관을 구조화하고 사례와 스토리텔링 중심으로 설명해 약관 해석의 정확성과 이해도를 높였습니다."
+      images:
+        - assets/img/awards/2025-fintech-boin/01.png
+
+    - title: "2025 핀테크 연구 아이디어 경진대회"
+      id: 2025-fintech-vibequant
+      grade: ["최우수상"]
+      date_label: "2025"
+      members: ["고대광(9기)", "박성범(9기)", "박정은(9기)", "한고은(9기)"]
+      comment: "생성형 AI 기반의 자율 퀀트 팩터 마이닝 및 투자 성향별 맞춤형 전략 수립 연구: VibeQuant. 바이브 코딩 방법론을 퀀트 투자 프로세스 전반에 적용해 개인 투자자의 접근성을 높이는 것을 목표로 했습니다. 사용자가 복잡한 수식이나 코딩 없이 자신의 투자 철학을 AI 에이전트에게 전달하면, 에이전트가 이를 백테스팅 가능한 전략 코드로 구현합니다. 이를 통해 기술적 장벽을 낮추고 창의적인 투자 아이디어 발굴에 집중할 수 있도록 설계했습니다."
+      images:
+        - assets/img/awards/2025-fintech-vibequant/01.png
+
+    - title: "2025 핀테크 연구 아이디어 경진대회"
+      id: 2025-fintech-credit-survival
+      grade: ["우수상"]
+      date_label: "2025"
+      members: ["이정훈(8기)", "이현빈(8기)", "장지원(8기)"]
+      comment: "딥러닝 생존 분석 기반 정밀 신용 평가 시스템. 딥러닝 생존분석 모델을 활용한 정밀 신용평가를 통해 P2P 대출 플랫폼의 신용등급 체계를 개선하고, 이해관계자의 상생 방안을 제시하는 실증 연구를 진행했습니다."
+      images:
+        - assets/img/awards/2025-fintech-credit-survival/01.png
+
+    - title: "제3회 iM Ready, iM Challenger"
+      id: 2025-im-challenger-im-bridge
+      grade: ["대상"]
+      date: 2025-05-26
+      members: ["천명석(8기)", "박성민(8기)", "장지원(8기)"]
+      images:
+        - assets/img/awards/2025-im-challenger-im-bridge/01.png
+      organizer: "iM금융그룹"
+      comment: "AI와 블록체인 기술을 적용한 국내 유학생 타겟팅 금융 서비스 iM Bridge. iM뱅크를 위한 외국인 유학생 맞춤형 모바일 뱅킹 앱으로, 생성형 AI 챗봇으로 금융 상담을 지원하고 대학과 연계한 블록체인 시스템으로 유학생이 비대면 계좌를 신속하고 안전하게 개설할 수 있도록 했습니다."
+
+    - title: "2025 대학(원)생 ICT 창업 아이디어 경진대회"
+      grade: ["장려상", "장려상"]
+
+    - title: "2025 핀테크 연구 아이디어 경진대회"
+      grade: ["장려상"]
+
+    - title: "제20회 전국 대학생 증권·파생상품 경시대회"
+      id: 2024-krx-robustness-index
+      grade: ["장려상"]
+      date: 2025-02-20 # 본선·결과 발표 (2024.11.18 본선 진출 입선 → 2025.02 장려상)
+      members: ["김민주(5기)", "최예은(5기)", "이민준(7기)", "이승원(7기)"]
+      slides: assets/pdf/awards/2024-krx-robustness-index.pdf
+      images:
+        - assets/img/awards/2024-krx-robustness-index/01.png
+      organizer: "한국거래소"
+      comment: "텍스트 마이닝을 이용한 강건성 지수 평가: 주가 상관관계 분석을 중심으로. 기업의 위기는 내부에서 먼저 감지된다는 가정 아래, DART 재무 변수와 잡플래닛 기업 리뷰를 KoBERT로 감성 분석한 값을 결합해 기업 강건성 지수를 개발했습니다. 리뷰 감성값을 반영하면 위기를 더 정밀하게 예측할 수 있음을 확인했고, 설명 가능한 수학적 지수로 머신러닝의 블랙박스 문제를 해소했습니다."
+
+# ----- 2024 -----
+- term: "2024"
+  items:
+    - title: "핀테크 챌린지 경상권"
+      grade: ["우수상"]
+
+    - title: "제 14회 DB 금융경제 공모전"
+      grade: ["가작", "장려상"]
+
+    - title: "2024 BDA & 동서발전 기상데이터 공모전"
+      id: 2024-bda-wind-sunday
+      grade: ["최우수상"]
+      date: 2024-12-10 # 2024 디지털 에너지전환 컨퍼런스(DDP)에서 시상
+      slides: assets/pdf/awards/2024-bda-wind-sunday.pdf
+      images:
+        - assets/img/awards/2024-bda-wind-sunday/01.png
+      organizer: "BDA · 한국동서발전"
+      comment: "풍력 발전 예측 모델링: 속도, 방향, 온도를 활용한 분석. 기상·환경 데이터로 하루 전 풍력 발전량을 예측하는 모델을 개발했습니다. 풍속·풍향·기온에 집중한 EDA와 wind 라이브러리 함수로 파생변수를 만들고, NMAE 기준으로 경주 풍력은 XGBoost, 영광 풍력은 LGBM 예측 모델을 구축했습니다."
+
+    - title: "2024 핀테크 연구 아이디어 경진대회"
+      id: 2024-fintech-safe-driving
+      grade: ["대상"]
+      date_label: "2024"
+      members: ["권윤경(6기)", "김나은(6기)", "박준형(6기)", "서예진(6기)"]
+      slides: assets/pdf/awards/2024-fintech-safe-driving.pdf
+      images:
+        - assets/img/awards/2024-fintech-safe-driving/01.png
+      comment: "부산시 교통 문화 개선을 위한 안전운전 점수 개발 및 활용 아이디어. 블랙박스 영상을 YOLOv5 객체 검출로 분석해 운전자의 안전운전 점수를 산출하는 모델을 구축했습니다. 이 점수를 지역화폐 부산 동백전 인센티브와 연계하거나 대안 신용평가 지표로 활용해, 금융 이력이 부족한 씬파일러에게 합리적인 대출 기회를 제공하는 방안을 제안했습니다."
+
+    - title: "DIVE 2024(글로벌 데이터 해커톤) allDATA 트랙"
+      grade: ["2등", "부산테크노파크원장상"]
+
+    - title: "2024 POSTECHOLBC 재생 에너지 최적 입찰 경진대회"
+      grade: ["참가상"]
+
+    - title: "부산 금융중심지 정책제안아이디어 공모전"
+      grade: ["장려상"]
+
+    - title: "2024 대학생 크리에이터 캠프"
+      grade: ["대상", "과학기술정보통신부 장관상"]
+
+    - title: "2024 NH투자증권 빅데이터 경진대회"
+      id: 2024-nh-dividend-etf
+      grade: ["입선"]
+      date: 2024-12-03
+      members: ["김진협(7기)", "김태연(7기)", "홍예원(7기)"]
+      slides: assets/pdf/awards/2024-nh-dividend-etf.pdf
+      images:
+        - assets/img/awards/2024-nh-dividend-etf/01.png
+      organizer: "NH투자증권"
+      comment: "노후 대비를 위한 배당 최적화 미국 ETF 추천 알고리즘. 노후 대비로 미국 배당 ETF에 투자하는 2030 '미당족'을 겨냥해, 위험감수·배당투자 성향과 연령대·자산 규모를 반영한 퍼스널 ETF를 생성형 AI로 추천하는 서비스를 설계했습니다."
+
+    - title: "2024 해운대구 빅데이터 아이디어 공모전"
+      grade: ["장려상"]
+
+    - title: "춘계통합학술대회 대학생 ERP 아이디어 공모전"
+      grade: ["장려상"]
+
+    - title: "2024 미래에셋증권 AI·Data 페스티벌"
+      id: 2024-mirae-ai-data-festival
+      grade: ["우수상"]
+      date: 2024-10-16
+      members: ["권성훈(4기)"]
+      slides: assets/pdf/awards/2024-mirae-ai-data-festival.pdf
+      images:
+        - assets/img/awards/2024-mirae-ai-data-festival/01.png
+      organizer: "미래에셋증권 · 네이버클라우드"
+      comment: "건강한 투자를 위한 고객언어 맞춤 투자 정보 제공 서비스. 거래 이력·설문 응답·웹사이트 이용 데이터로 고객을 세분화하고, 고객군에 맞춰 초보 투자자에게는 쉬운 설명을, 숙련 투자자에게는 핵심 요약을 생성하는 AI 모델을 구축했습니다. GA4 행동 데이터로 콘텐츠 소비 패턴을 반영하고 A/B 테스트로 서비스 효과를 검증했습니다."
+
+    - title: "2024 핀테크 연구 아이디어 경진대회"
+      grade: ["우수상", "최우수상"]
+
+    - title: "2024 제주 스마트관광 빅데이터 해커톤"
+      id: 2024-jeju-tamnaji
+      grade: ["최우수상"]
+      date: 2024-09-29
+      members: ["박준형(6기)", "안유리(7기)", "이승원(7기)", "이은재(7기)"]
+      slides: assets/pdf/awards/2024-jeju-tamnaji.pdf
+      images:
+        - assets/img/awards/2024-jeju-tamnaji/01.png
+        - assets/img/awards/2024-jeju-tamnaji/02.png
+      organizer: "제주관광공사"
+      comment: "제주어 기반의 게이미피케이션 관광 앱 '탐나지'. 제주어 보전과 관광 활성화를 위해 제주어 챗봇과 게이미피케이션을 결합한 관광 앱을 기획했습니다. 제주 관광 데이터와 사용자 로그로 개인 맞춤형 관광지 추천 시스템과 만족도 예측 모델을 구축하고, LLM·TTS 챗봇으로 제주어와 관광 정보를 자연스럽게 전달합니다."
+
+    - title: "부산광역시 글로벌 허브도시 청년해커톤 대회"
+      grade: ["대상"]
+
+    - title: "LG Aimers 5기 온라인 해커톤"
+      id: 2024-lg-aimers-defect
+      grade: ["상위 3.8%"]
+      date: 2024-08-27 # Phase 2 온라인 해커톤 마감일 (2024.08.01~08.27)
+      slides: assets/pdf/awards/2024-lg-aimers-defect.pdf
+      images:
+        - assets/img/awards/2024-lg-aimers-defect/01.png
+      organizer: "LG AI연구원"
+      comment: "제조업 불량 예측 AI 모델 개발 및 성능 개선. LG전자 VS본부의 대규모 제조 데이터로 불량을 예측하는 머신러닝 솔루션을 개발했습니다. 제조 데이터에 맞춘 전처리·후처리·샘플링 기법을 적용하고, CatBoost와 RandomForest를 결합한 앙상블 모델로 예측 정확도를 높였습니다."
+
+    - title: "2024 AI시대, 산업사회문제해결을 위한 리빙랩 프로젝트 공모전"
+      grade: ["우수상"]
+
+    - title: "2024 데이터안심구역 활용 공동 경진대회"
+      grade: ["최우수상"]
+
+# ----- 2023 -----
+- term: "2023"
+  items:
+    - title: "신한 AI, 보다 나은 금융 생활을 위한 AI 서비스 아이디어 경진대회"
+      grade: ["최우수상"]
+
+    - title: "금융위원회 D-테스트베드 2023년 상반기"
+      grade: ["참가팀 선정"]
+
+    - title: "2023 부산대학교 핀테크융합전공 연구 아이디어 경진대회"
+      grade: ["우수상", "최우수상", "대상"]
+
+    - title: "미래내일 일경험 청년 주도 프로젝트"
+      grade: ["장려상", "우수상"]
+
+    - title: "미래내일 일경험 기업제안형 프로젝트"
+      grade: ["우수상"]
+
+    - title: "FSI Data Challenge"
+      grade: ["금융보안원 원장상"]
+
+    - title: "삼성화재 리스크 분석 경진대회"
+      grade: ["장려상"]
+
+    - title: "NH투자증권 빅데이터 경진대회"
+      grade: ["우수상"]
+
+    - title: "2023 리튼 Generation AI Ideathon"
+      grade: ["2등상"]
+
+# ----- 2022 -----
+- term: "2022"
+  items:
+    - title: "서울시 산업사회 혁신 프로젝트 공모전"
+      grade: ["우수상"]
+
+    - title: "제 12회 DB 금융경제 공모전"
+      grade: ["입상"]
+
+    - title: "한국경영정보학회 대학생 아이디어 공모전"
+      grade: ["우수상", "대상"]
+
+    - title: "제 1회 KBX 금융 빅데이터 활용 아이디어 경진대회"
+      grade: ["우수상"]
+
+    - title: "NICE D&B 비재무 데이터를 활용한 중소기업 휴/폐업 예측 챌린지 공모전"
+      grade: ["대상"]
+
+    - title: "핀테크 융합전공 사업모델 아이디어 경진대회"
+      grade: ["우수상"]
+
+    - title: "부산 가명정보 활용센터 연계 프로젝트 진행"
+
+# ----- 2021 -----
+- term: "2021"
+  items:
+    - title: "한국경영정보학회 춘계 대학생 아이디어 공모전"
+      grade: ["우수상"]
+
+    - title: "제9회 공공데이터활용 비즈니스 아이디어 공모전"
+      grade: ["장려상"]
+
+    - title: "한국경영정보학회 추계 대학생 아이디어 공모전"
+      grade: ["장려상"]
+
+    - title: "디지털 산업 혁신 빅데이터 플랫폼 활용 금융아이디어 경진대회"
+      grade: ["우수상"]
+
+# ----- 2020 -----
+- term: "2020"
+  items:
+    - title: "제 1회 인공지능 응용경진대회"
+      grade: ["장려상"]
+
+    - title: "대학생 ICT 융합 프로젝트 경진대회"
+      grade: ["우수상"]

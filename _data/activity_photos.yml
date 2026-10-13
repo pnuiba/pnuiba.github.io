@@ -1,0 +1,34 @@
+# IBAlbum image dimensions: preserve natural proportions and reserve space before loading.
+assets/img/activities/2024-homecoming-1.jpg:
+  width: 1000
+  height: 1031
+assets/img/activities/2024-homecoming-2.jpg:
+  width: 1000
+  height: 750
+assets/img/activities/2025-fall-mt.jpg:
+  width: 1000
+  height: 1333
+assets/img/activities/2025-homecoming.jpg:
+  width: 1000
+  height: 563
+assets/img/activities/2025-junior-lecture.jpg:
+  width: 1000
+  height: 750
+assets/img/activities/2025-summer-mt.jpg:
+  width: 1000
+  height: 1333
+assets/img/activities/2026-graduation.jpg:
+  width: 1600
+  height: 1200
+assets/img/activities/alumni-lecture.jpg:
+  width: 1000
+  height: 750
+assets/img/activities/badminton.jpg:
+  width: 870
+  height: 658
+assets/img/activities/futsal.jpg:
+  width: 1000
+  height: 750
+assets/img/activities/odal-presentation.jpg:
+  width: 1000
+  height: 750

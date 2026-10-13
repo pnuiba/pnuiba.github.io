@@ -1,0 +1,20 @@
+- stage: "01 / FIRST SEMESTER"
+  title: 교육 세션
+  image: /assets/img/intro/roadmap-01-education.png
+  description: 선배 기수가 직접 진행하는 체계적인 교육을 통해 Python 프로그래밍, 데이터 분석의 기초, 통계와 머신러닝 모델링을 배우고 팀 실습으로 익힙니다.
+  link: /#curriculum
+  link_label: 교육 커리큘럼 보기
+- stage: "02 / FIRST SEMESTER"
+  title: 자체 대회
+  image: /assets/img/intro/roadmap-02-contest.png
+  description: 교육 세션에서 배운 내용을 바탕으로 분류·회귀 등 머신러닝 자체 대회에 참여합니다. 분석 결과를 발표하고 선배 기수의 피드백을 반영하며 모델링과 발표 역량을 기릅니다.
+- stage: "03 / SECOND SEMESTER"
+  title: 자율 프로젝트
+  image: /assets/img/intro/roadmap-03-project.png
+  description: 관심 분야별 심화 스터디와 자유로운 팀 활동을 통해 공모전, 산학협력 등 실전 프로젝트에 도전합니다. 실제 데이터를 다루며 데이터 기반 의사결정과 협업을 경험합니다.
+  link: /activities/
+  link_label: 활동 살펴보기
+- stage: "04 / NETWORKING"
+  title: 선배 특강
+  image: /assets/img/intro/roadmap-04-alumni.png
+  description: 다양한 산업에 진출하거나 대학원에 진학한 선배들의 경험을 듣습니다. 주니어·시니어 특강과 홈커밍데이를 통해 실무 인사이트를 나누고 자신의 진로를 구체화합니다.

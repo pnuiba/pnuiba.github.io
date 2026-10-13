@@ -1,0 +1,39 @@
+# IBApply 모집 정보. 새 기수 모집 시 이 파일을 수정합니다.
+upcoming:
+  generation: "13기"
+  status: "Coming Soon"
+generation: "12기"
+status: "Closed"
+apply_period: "07.07 – 07.21"
+form_url: https://app.notion.com/p/IBA-12-38e28da74e27802bb6abe4493e7f170e?source=copy_link # 지원서 양식
+form_filename: "IBA지원서_12기_이름"
+steps: # 전형 절차 (순서대로)
+  - date: "07.07 – 07.21"
+    name: "서류 지원"
+    note: "지원서 양식 작성 → PDF로 저장 → 메일 제출"
+  - date: "07.25 (오후)"
+    name: "서류 발표"
+    note: "합격자에게 면접 일정을 문자로 안내"
+  - date: "07.30 – 07.31"
+    name: "면접"
+    note: "대면 면접 · 약 15~20분"
+  - date: "08.01 (오후)"
+    name: "최종 발표"
+after: "08.04 OT 시작 · 매주 목요일 오후 세션 · 개인 노트북 필요" # 합격 후 활동
+posters_title: "2026 12기 모집요강"
+posters: # 모집요강 포스터 (폴더와 이 목록만 바꾸면 됨). 첫 장이 처음 열림
+  - assets/img/recruit/2026-12th/poster-01.jpg
+  - assets/img/recruit/2026-12th/poster-02.jpg
+  - assets/img/recruit/2026-12th/poster-03.jpg
+  - assets/img/recruit/2026-12th/poster-04.jpg
+  - assets/img/recruit/2026-12th/poster-05.jpg
+  - assets/img/recruit/2026-12th/poster-06.jpg
+  - assets/img/recruit/2026-12th/poster-07.jpg
+  - assets/img/recruit/2026-12th/poster-08.jpg
+  - assets/img/recruit/2026-12th/poster-09.jpg
+  - assets/img/recruit/2026-12th/poster-10.jpg
+
+eligibility:
+  - "부산대학교 학부 재학생 또는 휴학생"
+  - "연속 2개 학기(방학 포함) 활동 가능"
+  - "전공·학년 무관"
