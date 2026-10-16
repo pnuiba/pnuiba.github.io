@@ -1,7 +1,7 @@
 {% comment %}
-  소식 목록 (홈 NEWS, /news/ 페이지 공용).
+  소식 목록 (/news/ 페이지). 홈 NEWS!의 수상 소식은 _pages/home.md에서 별도로 표시합니다.
   - _news/ 의 소식 + _projects/ 중 news: true 이고 date 가 있는 활동을 날짜 최신순으로 합쳐 보여 줍니다.
-  - 활동 제목을 누르면 Activities 페이지로 이동해 그 활동 사진이 바로 크게 열립니다.
+  - 활동 제목을 누르면 IBAlbum 페이지로 이동해 그 활동 사진이 바로 크게 열립니다.
   - 사용: {% include iba_news_list.liquid limit=5 %}  (limit 생략 시 전체)
 {% endcomment %}
 {% assign announced = site.projects | where_exp: "p", "p.news == true and p.date" %}

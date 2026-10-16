@@ -629,7 +629,7 @@ body:has(.awards-orbit, .awards-list) .container[role="main"] {
   max-width: 1140px;
 }
 
-/* Awards Collection — 16:9 covers above the independent archive search. */
+/* IBAwards Collection — 16:9 covers above the independent archive search. */
 .awards-orbit { position: relative; margin: 0 0 1.5rem; }
 .awards-orbit[hidden] { display: none; }
 .award-orbit-stage { position: relative; height: 470px; isolation: isolate; }

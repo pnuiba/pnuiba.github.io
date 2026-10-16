@@ -4,7 +4,7 @@ description: "기수 간 교류회 · 선배님들과 만날 수 있었던 특�
 category: 행사
 date: 2024-11-16 # 임시 날짜
 img: assets/img/activities/2024-homecoming-1.jpg
-images: # Activities 에서 카드를 누르면 순서대로 넘겨 볼 사진
+images: # IBAlbum에서 카드를 누르면 순서대로 넘겨 볼 사진
   - assets/img/activities/2024-homecoming-1.jpg
   - assets/img/activities/2024-homecoming-2.jpg
 ---
