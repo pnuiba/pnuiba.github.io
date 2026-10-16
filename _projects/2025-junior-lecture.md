@@ -6,6 +6,6 @@ date: 2025-05-20 # 임시 날짜
 img: assets/img/activities/2025-junior-lecture.jpg
 ---
 
-[← IBAlbum]({{ '/activities/' | relative_url }})
+[← IBAlbum]({{ '/ibalbum/' | relative_url }})
 
 {% include figure.liquid loading="eager" path="assets/img/activities/2025-junior-lecture.jpg" class="img-fluid rounded z-depth-1" alt="2025 주니어선배 특강" zoomable=true %}

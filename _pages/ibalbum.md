@@ -1,7 +1,7 @@
 ---
 layout: page
 title: IBAlbum
-permalink: /activities/
+permalink: /ibalbum/
 nav: true
 nav_order: 3
 images:
@@ -34,4 +34,4 @@ images:
     {% endfor %}
   {% endfor %}
 </div>
-<script src="{{ '/assets/js/album-gallery.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/ibalbum-gallery.js' | relative_url }}" defer></script>

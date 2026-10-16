@@ -94,7 +94,7 @@ announcements:
       <li class="home-award-news-item">
         <time datetime="{{ award.date | date: '%Y-%m-%d' }}">{{ award.date | date: '%b %d, %Y' }}</time>
         <div class="home-award-news-body">
-          <a class="news-title" href="{{ '/awards/' | relative_url }}#award-{{ award.id }}">{{ award.title | escape }} {{ sorted_grades | join: ', ' | escape }} 수상</a>
+          <a class="news-title" href="{{ '/ibawards/' | relative_url }}#award-{{ award.id }}">{{ award.title | escape }} {{ sorted_grades | join: ', ' | escape }} 수상</a>
           {% if members.size > 0 %}<p class="home-award-news-members">{% for member in members %}<span>{{ member | escape }}</span>{% endfor %}{% if group.items.size == 1 and award.members_note %}<span>{{ award.members_note | escape }}</span>{% endif %}</p>{% endif %}
         </div>
       </li>

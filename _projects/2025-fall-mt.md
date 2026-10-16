@@ -6,6 +6,6 @@ date: 2025-10-18 # 임시 날짜
 img: assets/img/activities/2025-fall-mt.jpg
 ---
 
-[← IBAlbum]({{ '/activities/' | relative_url }})
+[← IBAlbum]({{ '/ibalbum/' | relative_url }})
 
 {% include figure.liquid loading="eager" path="assets/img/activities/2025-fall-mt.jpg" class="img-fluid rounded z-depth-1" alt="2025 가을 MT" zoomable=true %}

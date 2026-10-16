@@ -1,7 +1,7 @@
 ---
 layout: page
 title: IBAwards
-permalink: /awards/
+permalink: /ibawards/
 nav: true
 nav_order: 4
 images:
@@ -254,4 +254,4 @@ images:
     searchBox.addEventListener('focusout', function (event) { if (event.relatedTarget && !searchBox.contains(event.relatedTarget)) closeResults(); });
   })();
 </script>
-<script src="{{ '/assets/js/awards-archive.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/ibawards-archive.js' | relative_url }}" defer></script>

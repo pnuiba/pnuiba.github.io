@@ -6,6 +6,6 @@ date: 2026-08-21 # 부산대학교 2026 후기 학위수여식 (사진 촬영일
 img: assets/img/activities/2026-graduation.jpg
 ---
 
-[← IBAlbum]({{ '/activities/' | relative_url }})
+[← IBAlbum]({{ '/ibalbum/' | relative_url }})
 
 {% include figure.liquid loading="eager" path="assets/img/activities/2026-graduation.jpg" class="img-fluid rounded z-depth-1" alt="2026 후기 졸업식" zoomable=true %}

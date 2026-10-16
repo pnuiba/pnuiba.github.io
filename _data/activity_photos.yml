@@ -1,4 +1,13 @@
 # IBAlbum image dimensions: preserve natural proportions and reserve space before loading.
+assets/img/activities/2026-president-cookies-1.jpg:
+  width: 848
+  height: 1264
+assets/img/activities/2026-president-cookies-2.jpg:
+  width: 1109
+  height: 960
+assets/img/activities/2026-president-cookies-3.jpg:
+  width: 944
+  height: 1118
 assets/img/activities/2024-homecoming-1.jpg:
   width: 1000
   height: 1031

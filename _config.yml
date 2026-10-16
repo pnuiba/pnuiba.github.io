@@ -147,6 +147,7 @@ kramdown:
 
 include: ["_pages"]
 exclude:
+  - "KakaoTalk_Photo_*.png"
   - source-materials
   - 임시폴더
   - .local

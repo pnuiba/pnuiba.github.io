@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /activities/
+sitemap: false
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>IBAlbum | IBA</title>
+    <link rel="canonical" href="{{ '/ibalbum/' | absolute_url }}">
+    <meta http-equiv="refresh" content="0; url={{ '/ibalbum/' | relative_url }}">
+    <meta name="robots" content="noindex">
+    <script>
+      window.location.replace({{ '/ibalbum/' | relative_url | jsonify }} + window.location.search + window.location.hash);
+    </script>
+  </head>
+  <body><a href="{{ '/ibalbum/' | relative_url }}">IBAlbum 페이지로 이동</a></body>
+</html>

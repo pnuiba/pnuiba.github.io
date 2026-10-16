@@ -14,14 +14,14 @@ layout: null
   link({{ p.url | prepend: 'nav-' | jsonify }}, {{ p.title | jsonify }}, {{ site.data.search.pages[p.permalink] | default: '' | jsonify }}, '페이지', {{ p.url | relative_url | jsonify }});
   {% endif %}{% endfor %}
   link('home-curriculum', '교육 커리큘럼', 'Home · Curriculum', '안내', {{ '/#curriculum' | relative_url | jsonify }});
-  link('faq-overview', '자주 묻는 질문', 'IBApply · FAQ', '안내', {{ '/recruit/#faq' | relative_url | jsonify }});
-  link('contact-overview', '문의 안내', '이메일 · Instagram', '문의', {{ '/recruit/#contact' | relative_url | jsonify }});
+  link('faq-overview', '자주 묻는 질문', 'IBApply · FAQ', '안내', {{ '/ibapply/#faq' | relative_url | jsonify }});
+  link('contact-overview', '문의 안내', '이메일 · Instagram', '문의', {{ '/ibapply/#contact' | relative_url | jsonify }});
   {% assign r = site.data.recruit %}
-  link('upcoming-recruitment', {{ r.upcoming.generation | append: ' · ' | append: r.upcoming.status | jsonify }}, 'IBApply · 다음 모집', '모집', {{ '/recruit/#apply' | relative_url | jsonify }});
-  {% capture archive_url %}/recruit/#recruit-{{ r.generation | remove: '기' }}{% endcapture %}
+  link('upcoming-recruitment', {{ r.upcoming.generation | append: ' · ' | append: r.upcoming.status | jsonify }}, 'IBApply · 다음 모집', '모집', {{ '/ibapply/#apply' | relative_url | jsonify }});
+  {% capture archive_url %}/ibapply/#recruit-{{ r.generation | remove: '기' }}{% endcapture %}
   link('closed-recruitment', {{ r.generation | append: ' · ' | append: r.status | jsonify }}, 'IBApply · 지난 모집요강 · 모집 종료', '모집', {{ archive_url | relative_url | jsonify }});
   {% for item in site.data.faq %}
-  link('faq-{{ forloop.index }}', {{ item.q | jsonify }}, {{ item.a | jsonify }}, 'FAQ', {{ '/recruit/#faq-' | append: forloop.index | relative_url | jsonify }});
+  link('faq-{{ forloop.index }}', {{ item.q | jsonify }}, {{ item.a | jsonify }}, 'FAQ', {{ '/ibapply/#faq-' | append: forloop.index | relative_url | jsonify }});
   {% endfor %}
   {% assign generations = site.data.members | map: 'generation' | uniq | sort | reverse %}
   {% for generation in generations %}{% assign group = site.data.members | where: 'generation', generation %}{% for m in group %}
@@ -30,7 +30,7 @@ layout: null
   link('member-{{ generation }}-{{ forloop.index }}', {{ m.name | jsonify }}, {{ member_description | strip | jsonify }}, '멤버', {{ member_url | relative_url | jsonify }});
   {% endfor %}{% endfor %}
   {% assign activities = site.projects | sort: 'date' | reverse %}{% for project in activities %}
-  {% capture activity_url %}/activities/#activity-{{ project.slug }}{% endcapture %}
+  {% capture activity_url %}/ibalbum/#activity-{{ project.slug }}{% endcapture %}
   link({{ project.slug | prepend: 'activity-' | jsonify }}, {{ project.title | jsonify }}, {{ project.description | default: '' | jsonify }}, 'IBAlbum', {{ activity_url | relative_url | jsonify }});
   {% endfor %}
   {% for term in site.data.awards %}
@@ -39,7 +39,7 @@ layout: null
   {% assign records = full | concat: brief %}{% for a in records %}
   {% capture record_id %}{% if a.id %}award-{{ a.id }}{% else %}award-{{ term.term }}-record-{{ forloop.index }}{% endif %}{% endcapture %}
   {% capture record_description %}{{ term.term }} · {% if a.teams %}{% for team in a.teams %}{{ team.grade }} · {{ team.members | join: ' · ' }} {% endfor %}{% else %}{{ a.grade | join: ' · ' }} · {{ a.members | join: ' · ' }}{% endif %}{% endcapture %}
-  {% capture record_url %}/awards/#{{ record_id }}{% endcapture %}
+  {% capture record_url %}/ibawards/#{{ record_id }}{% endcapture %}
   link({{ record_id | jsonify }}, {{ a.title | jsonify }}, {{ record_description | strip | jsonify }}, 'IBAwards', {{ record_url | relative_url | jsonify }});
   {% endfor %}{% endfor %}
   link('news', '소식', '학회 활동 · 지난 모집 안내', '안내', {{ '/news/' | relative_url | jsonify }});
@@ -47,7 +47,7 @@ layout: null
   link('contact-instagram', 'Instagram', {{ site.data.contact.instagram | prepend: '@' | jsonify }}, '문의', {{ site.data.contact.instagram | prepend: 'https://www.instagram.com/' | append: '/' | jsonify }});
   {% for officer in site.data.contact.officers %}{% if officer.contact != blank %}
   {% capture officer_description %}{{ officer.name }} · {{ officer.generation }}기 · {{ officer.contact }}{% endcapture %}
-  link('contact-officer-{{ forloop.index }}', {{ officer.role | append: ' 문의' | jsonify }}, {{ officer_description | strip | jsonify }}, '문의', {{ '/recruit/#contact' | relative_url | jsonify }});
+  link('contact-officer-{{ forloop.index }}', {{ officer.role | append: ' 문의' | jsonify }}, {{ officer_description | strip | jsonify }}, '문의', {{ '/ibapply/#contact' | relative_url | jsonify }});
   {% endif %}{% endfor %}
   {% if site.enable_darkmode %}
   [['light', '밝은 모드'], ['dark', '어두운 모드'], ['system', '시스템 설정 따르기']].forEach(function (item) {

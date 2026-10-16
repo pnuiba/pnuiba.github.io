@@ -1,7 +1,7 @@
 ---
 layout: page
 title: IBApply
-permalink: /recruit/
+permalink: /ibapply/
 nav: true
 nav_order: 5
 images:

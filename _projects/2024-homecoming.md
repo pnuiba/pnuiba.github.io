@@ -9,7 +9,7 @@ images: # Activities 에서 카드를 누르면 순서대로 넘겨 볼 사진
   - assets/img/activities/2024-homecoming-2.jpg
 ---
 
-[← IBAlbum]({{ '/activities/' | relative_url }})
+[← IBAlbum]({{ '/ibalbum/' | relative_url }})
 
 {% include figure.liquid loading="eager" path="assets/img/activities/2024-homecoming-1.jpg" class="img-fluid rounded z-depth-1" alt="2024 홈커밍데이" zoomable=true %}
 
