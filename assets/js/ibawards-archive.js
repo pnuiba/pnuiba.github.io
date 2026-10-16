@@ -43,7 +43,7 @@ uniform float uOffset;
 uniform float uWide;
 out vec2 vUv;
 out float vFront;
-out float vItem;
+flat out float vItem;
 
 vec3 rotate(vec4 q, vec3 v) {
   vec3 t = 2.0 * cross(q.xyz, v);
@@ -87,7 +87,7 @@ uniform vec3 uPlaceholder;
 uniform vec3 uTone;
 in vec2 vUv;
 in float vFront;
-in float vItem;
+flat in float vItem;
 out vec4 outColor;
 
 void main() {
