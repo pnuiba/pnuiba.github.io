@@ -110,6 +110,7 @@ announcements:
     <div class="home-contact-links">
       <a href="mailto:{{ c.email }}">{{ c.email }} ↗</a>
       <a href="https://www.instagram.com/{{ c.instagram }}/">Instagram / @{{ c.instagram }} ↗</a>
+      <a href="https://github.com/{{ c.github }}">GitHub / {{ c.github }} ↗</a>
       {% for officer in c.officers %}{% if officer.contact != blank %}
         {% if officer.contact contains '@' %}{% assign contact_prefix = 'mailto:' %}{% else %}{% assign contact_prefix = 'tel:' %}{% endif %}
         <p class="contact-officer"><span class="contact-officer-label">{{ officer.role | escape }}{% if officer.name %} ({{ officer.name | escape }}, {{ officer.generation }}기){% endif %}:</span><a href="{{ officer.contact | remove: ' ' | prepend: contact_prefix | escape }}">{{ officer.contact | escape }}</a></p>
