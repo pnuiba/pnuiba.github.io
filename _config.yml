@@ -63,7 +63,7 @@ al_folio:
 navbar_fixed: true
 footer_fixed: true
 search_enabled: true # 상단 검색 (단축키 Ctrl+K / ⌘K)
-socials_in_search: true
+socials_in_search: false # 연락처 검색은 assets/js/site-search.js에서 _data/contact.yml을 사용
 posts_in_search: true
 bib_search: false
 

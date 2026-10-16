@@ -29,6 +29,7 @@ images:
       {% assign dimensions = site.data.activity_photos[photo] %}
       <a class="album-photo" href="{{ photo | relative_url }}" data-date="{% unless project.category == '소모임' %}{{ project.date | date: '%Y-%m-%d' }}{% endunless %}" data-activity="activity-{{ project.slug }}" data-lightbox="activity-{{ project.slug }}" data-title="{{ project.title | escape }}{% if photos.size > 1 %} ({{ forloop.index }}/{{ photos.size }}){% endif %}" aria-label="{{ project.title | escape }} 사진 크게 보기{% if photos.size > 1 %} ({{ forloop.index }}/{{ photos.size }}){% endif %}">
         <img src="{{ photo | relative_url }}" alt="{{ project.title | escape }}" loading="lazy" decoding="async"{% if dimensions %} width="{{ dimensions.width }}" height="{{ dimensions.height }}"{% endif %}>
+        {% if photos.size > 1 %}<span class="album-photo-count" aria-hidden="true">사진 {{ photos.size }}장</span>{% endif %}
         <span class="album-caption">
           <span class="album-caption-title">{{ project.title | escape }}</span>
           {% if project.description %}<span class="album-caption-description">{{ project.description | escape }}</span>{% endif %}
@@ -42,3 +43,4 @@ images:
   {% endfor %}
 </div>
 <script src="{{ '/assets/js/ibalbum-gallery.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/ibalbum-swipe.js' | relative_url }}" defer></script>

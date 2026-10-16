@@ -45,6 +45,7 @@ layout: null
   link('news', '소식', '학회 활동 · 지난 모집 안내', '안내', {{ '/news/' | relative_url | jsonify }});
   link('contact-email', '이메일 문의', {{ site.data.contact.email | jsonify }}, '문의', {{ site.data.contact.email | prepend: 'mailto:' | jsonify }});
   link('contact-instagram', 'Instagram', {{ site.data.contact.instagram | prepend: '@' | jsonify }}, '문의', {{ site.data.contact.instagram | prepend: 'https://www.instagram.com/' | append: '/' | jsonify }});
+  link('contact-github', 'GitHub', {{ site.data.contact.github | jsonify }}, '문의', {{ site.data.contact.github | prepend: 'https://github.com/' | jsonify }});
   {% for officer in site.data.contact.officers %}{% if officer.contact != blank %}
   {% capture officer_description %}{{ officer.name }} · {{ officer.generation }}기 · {{ officer.contact }}{% endcapture %}
   link('contact-officer-{{ forloop.index }}', {{ officer.role | append: ' 문의' | jsonify }}, {{ officer_description | strip | jsonify }}, '문의', {{ '/ibapply/#contact' | relative_url | jsonify }});

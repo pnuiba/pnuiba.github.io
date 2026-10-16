@@ -4,7 +4,7 @@ title: Home
 permalink: /
 subtitle: 부산대학교 지능형 경영 데이터 분석 학회
 
-social: false # 하단에 메일·인스타그램 아이콘 표시 (_data/socials.yml)
+social: false # 연락처는 아래 Contact Freely에서 _data/contact.yml을 사용해 표시
 
 # 홈 NEWS! 에 보여줄 소식 개수 (_data/awards.yml 에서 date 와 id 가 있는 수상 중 최신순)
 news_limit: 5
