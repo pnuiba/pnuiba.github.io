@@ -19,6 +19,7 @@ images:
         <span class="apply-status apply-status-upcoming">{{ r.upcoming.status | escape }}</span>
       </div>
     </div>
+    <p class="apply-community">지금까지 <strong>{{ site.data.members | size }}명</strong>이 IBA와 함께했습니다.</p>
   </section>
 
   <details class="apply-archive" id="recruit-{{ r.generation | remove: '기' }}">

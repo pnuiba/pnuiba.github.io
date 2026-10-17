@@ -1097,6 +1097,8 @@ article h3.awards-brief-title {
 .apply-page .apply-intro h2 { margin: 0 0 0.35rem; font-size: 1.7rem; font-weight: 700; }
 .apply-generation-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
 .apply-page .apply-generation-heading h2 { margin: 0; font-size: 2rem; }
+.apply-community { margin: 0; color: var(--muted-foreground); font-size: 0.85rem; line-height: 1.8; word-break: keep-all; }
+.apply-community strong { color: var(--foreground); font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; }
 .apply-status { display: inline-flex; align-items: center; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 400; line-height: 1.7; white-space: nowrap; }
 .apply-status-upcoming { color: var(--primary); background: color-mix(in srgb, var(--primary) 12%, transparent); }
 .apply-status-closed { color: var(--muted-foreground); background: var(--muted); }
